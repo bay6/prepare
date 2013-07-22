@@ -214,3 +214,305 @@ Migrating to CreateMicroposts (20130722142456)
   [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20130722142456"]]
   [1m[36m (7.7ms)[0m  [1mcommit transaction[0m
   [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+
+
+Started GET "/microposts" for 111.197.233.57 at 2013-07-22 14:27:36 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by MicropostsController#index as HTML
+  [1m[35mMicropost Load (0.1ms)[0m  SELECT "microposts".* FROM "microposts"
+  Rendered microposts/index.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 242ms (Views: 238.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/microposts" for 111.197.233.57 at 2013-07-22 14:27:37 +0000
+Processing by MicropostsController#index as HTML
+  [1m[36mMicropost Load (0.3ms)[0m  [1mSELECT "microposts".* FROM "microposts"[0m
+  Rendered microposts/index.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 10ms (Views: 9.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 111.197.233.57 at 2013-07-22 14:27:38 +0000
+
+
+Started GET "/assets/microposts.css?body=1" for 111.197.233.57 at 2013-07-22 14:27:38 +0000
+
+
+Started GET "/assets/scaffolds.css?body=1" for 111.197.233.57 at 2013-07-22 14:27:38 +0000
+
+
+Started GET "/assets/users.css?body=1" for 111.197.233.57 at 2013-07-22 14:27:38 +0000
+
+
+Started GET "/assets/microposts.js?body=1" for 111.197.233.57 at 2013-07-22 14:27:38 +0000
+
+
+Started GET "/assets/users.js?body=1" for 111.197.233.57 at 2013-07-22 14:27:38 +0000
+
+
+Started GET "/assets/application.js?body=1" for 111.197.233.57 at 2013-07-22 14:27:38 +0000
+
+
+Started GET "/microposts/new" for 111.197.233.57 at 2013-07-22 14:27:40 +0000
+Processing by MicropostsController#new as HTML
+  Rendered microposts/_form.html.erb (26.9ms)
+  Rendered microposts/new.html.erb within layouts/application (29.1ms)
+Completed 200 OK in 38ms (Views: 36.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 111.197.233.57 at 2013-07-22 14:27:41 +0000
+
+
+Started GET "/assets/scaffolds.css?body=1" for 111.197.233.57 at 2013-07-22 14:27:41 +0000
+
+
+Started GET "/assets/users.css?body=1" for 111.197.233.57 at 2013-07-22 14:27:41 +0000
+
+
+Started GET "/assets/users.js?body=1" for 111.197.233.57 at 2013-07-22 14:27:41 +0000
+
+
+Started GET "/assets/application.js?body=1" for 111.197.233.57 at 2013-07-22 14:27:41 +0000
+
+
+Started POST "/microposts" for 111.197.233.57 at 2013-07-22 14:28:10 +0000
+Processing by MicropostsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Iacx82x5LyQDKdEZnE77XFcRvvp4pSzjdNuMJpuphNk=", "micropost"=>{"content"=>"111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111", "user_id"=>"1"}, "commit"=>"Create Micropost"}
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "microposts" ("content", "created_at", "updated_at", "user_id") VALUES (?, ?, ?, ?)[0m  [["content", "111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"], ["created_at", Mon, 22 Jul 2013 14:28:10 UTC +00:00], ["updated_at", Mon, 22 Jul 2013 14:28:10 UTC +00:00], ["user_id", 1]]
+  [1m[35m (6.3ms)[0m  commit transaction
+Redirected to http://192.241.214.238:3000/microposts/1
+Completed 302 Found in 15ms (ActiveRecord: 7.1ms)
+
+
+Started GET "/microposts/1" for 111.197.233.57 at 2013-07-22 14:28:11 +0000
+Processing by MicropostsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mMicropost Load (0.3ms)[0m  [1mSELECT "microposts".* FROM "microposts" WHERE "microposts"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered microposts/show.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 12ms (Views: 9.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 111.197.233.57 at 2013-07-22 14:28:11 +0000
+
+
+Started GET "/assets/microposts.css?body=1" for 111.197.233.57 at 2013-07-22 14:28:11 +0000
+
+
+Started GET "/assets/scaffolds.css?body=1" for 111.197.233.57 at 2013-07-22 14:28:12 +0000
+
+
+Started GET "/assets/users.css?body=1" for 111.197.233.57 at 2013-07-22 14:28:12 +0000
+
+
+Started GET "/assets/microposts.js?body=1" for 111.197.233.57 at 2013-07-22 14:28:12 +0000
+
+
+Started GET "/assets/users.js?body=1" for 111.197.233.57 at 2013-07-22 14:28:12 +0000
+
+
+Started GET "/assets/application.js?body=1" for 111.197.233.57 at 2013-07-22 14:28:12 +0000
+
+
+Started GET "/microposts" for 111.197.233.57 at 2013-07-22 14:28:39 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by MicropostsController#index as HTML
+  [1m[35mMicropost Load (0.1ms)[0m  SELECT "microposts".* FROM "microposts"
+  Rendered microposts/index.html.erb within layouts/application (55.1ms)
+Completed 200 OK in 117ms (Views: 113.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/microposts/1/edit" for 111.197.233.57 at 2013-07-22 14:28:39 +0000
+Processing by MicropostsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mMicropost Load (0.3ms)[0m  [1mSELECT "microposts".* FROM "microposts" WHERE "microposts"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered microposts/_form.html.erb (49.1ms)
+  Rendered microposts/edit.html.erb within layouts/application (53.4ms)
+Completed 200 OK in 62ms (Views: 58.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 111.197.233.57 at 2013-07-22 14:28:40 +0000
+
+
+Started GET "/assets/microposts.css?body=1" for 111.197.233.57 at 2013-07-22 14:28:40 +0000
+
+
+Started GET "/assets/scaffolds.css?body=1" for 111.197.233.57 at 2013-07-22 14:28:40 +0000
+
+
+Started GET "/assets/users.css?body=1" for 111.197.233.57 at 2013-07-22 14:28:40 +0000
+
+
+Started GET "/assets/microposts.js?body=1" for 111.197.233.57 at 2013-07-22 14:28:40 +0000
+
+
+Started GET "/assets/users.js?body=1" for 111.197.233.57 at 2013-07-22 14:28:40 +0000
+
+
+Started GET "/assets/application.js?body=1" for 111.197.233.57 at 2013-07-22 14:28:40 +0000
+
+
+Started PATCH "/microposts/1" for 111.197.233.57 at 2013-07-22 14:28:53 +0000
+Processing by MicropostsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Iacx82x5LyQDKdEZnE77XFcRvvp4pSzjdNuMJpuphNk=", "micropost"=>{"content"=>"1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111", "user_id"=>"1"}, "commit"=>"Update Micropost", "id"=>"1"}
+  [1m[35mMicropost Load (0.2ms)[0m  SELECT "microposts".* FROM "microposts" WHERE "microposts"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (3.6ms)[0m  UPDATE "microposts" SET "content" = ?, "updated_at" = ? WHERE "microposts"."id" = 1  [["content", "1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"], ["updated_at", Mon, 22 Jul 2013 14:28:53 UTC +00:00]]
+  [1m[36m (5.0ms)[0m  [1mcommit transaction[0m
+Redirected to http://192.241.214.238:3000/microposts/1
+Completed 302 Found in 19ms (ActiveRecord: 9.0ms)
+
+
+Started GET "/microposts/1" for 111.197.233.57 at 2013-07-22 14:28:53 +0000
+Processing by MicropostsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mMicropost Load (0.2ms)[0m  SELECT "microposts".* FROM "microposts" WHERE "microposts"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered microposts/show.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 12ms (Views: 10.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 111.197.233.57 at 2013-07-22 14:28:54 +0000
+
+
+Started GET "/assets/microposts.css?body=1" for 111.197.233.57 at 2013-07-22 14:28:54 +0000
+
+
+Started GET "/assets/scaffolds.css?body=1" for 111.197.233.57 at 2013-07-22 14:28:54 +0000
+
+
+Started GET "/assets/users.css?body=1" for 111.197.233.57 at 2013-07-22 14:28:54 +0000
+
+
+Started GET "/assets/microposts.js?body=1" for 111.197.233.57 at 2013-07-22 14:28:54 +0000
+
+
+Started GET "/assets/users.js?body=1" for 111.197.233.57 at 2013-07-22 14:28:54 +0000
+
+
+Started GET "/assets/application.js?body=1" for 111.197.233.57 at 2013-07-22 14:28:54 +0000
+
+
+Started GET "/microposts/1/edit" for 111.197.233.57 at 2013-07-22 14:29:28 +0000
+Processing by MicropostsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mMicropost Load (0.3ms)[0m  [1mSELECT "microposts".* FROM "microposts" WHERE "microposts"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered microposts/_form.html.erb (6.5ms)
+  Rendered microposts/edit.html.erb within layouts/application (8.5ms)
+Completed 200 OK in 21ms (Views: 18.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 111.197.233.57 at 2013-07-22 14:29:29 +0000
+
+
+Started GET "/assets/microposts.css?body=1" for 111.197.233.57 at 2013-07-22 14:29:29 +0000
+
+
+Started GET "/assets/scaffolds.css?body=1" for 111.197.233.57 at 2013-07-22 14:29:29 +0000
+
+
+Started GET "/assets/users.css?body=1" for 111.197.233.57 at 2013-07-22 14:29:29 +0000
+
+
+Started GET "/assets/microposts.js?body=1" for 111.197.233.57 at 2013-07-22 14:29:29 +0000
+
+
+Started GET "/assets/users.js?body=1" for 111.197.233.57 at 2013-07-22 14:29:29 +0000
+
+
+Started GET "/assets/application.js?body=1" for 111.197.233.57 at 2013-07-22 14:29:29 +0000
+
+
+Started PATCH "/microposts/1" for 111.197.233.57 at 2013-07-22 14:30:05 +0000
+Processing by MicropostsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Iacx82x5LyQDKdEZnE77XFcRvvp4pSzjdNuMJpuphNk=", "micropost"=>{"content"=>"abcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcde", "user_id"=>"1"}, "commit"=>"Update Micropost", "id"=>"1"}
+  [1m[35mMicropost Load (0.3ms)[0m  SELECT "microposts".* FROM "microposts" WHERE "microposts"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "microposts" SET "content" = ?, "updated_at" = ? WHERE "microposts"."id" = 1  [["content", "abcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcde"], ["updated_at", Mon, 22 Jul 2013 14:30:05 UTC +00:00]]
+  [1m[36m (6.5ms)[0m  [1mcommit transaction[0m
+Redirected to http://192.241.214.238:3000/microposts/1
+Completed 302 Found in 55ms (ActiveRecord: 7.4ms)
+
+
+Started GET "/microposts/1" for 111.197.233.57 at 2013-07-22 14:30:05 +0000
+Processing by MicropostsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mMicropost Load (0.3ms)[0m  SELECT "microposts".* FROM "microposts" WHERE "microposts"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered microposts/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 11ms (Views: 9.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 111.197.233.57 at 2013-07-22 14:30:06 +0000
+
+
+Started GET "/assets/microposts.css?body=1" for 111.197.233.57 at 2013-07-22 14:30:06 +0000
+
+
+Started GET "/assets/scaffolds.css?body=1" for 111.197.233.57 at 2013-07-22 14:30:06 +0000
+
+
+Started GET "/assets/users.css?body=1" for 111.197.233.57 at 2013-07-22 14:30:06 +0000
+
+
+Started GET "/assets/microposts.js?body=1" for 111.197.233.57 at 2013-07-22 14:30:06 +0000
+
+
+Started GET "/assets/users.js?body=1" for 111.197.233.57 at 2013-07-22 14:30:06 +0000
+
+
+Started GET "/assets/application.js?body=1" for 111.197.233.57 at 2013-07-22 14:30:06 +0000
+
+
+Started GET "/microposts/1/edit" for 111.197.233.57 at 2013-07-22 14:30:43 +0000
+Processing by MicropostsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mMicropost Load (0.2ms)[0m  [1mSELECT "microposts".* FROM "microposts" WHERE "microposts"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered microposts/_form.html.erb (4.3ms)
+  Rendered microposts/edit.html.erb within layouts/application (5.6ms)
+Completed 200 OK in 14ms (Views: 12.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 111.197.233.57 at 2013-07-22 14:30:43 +0000
+
+
+Started GET "/assets/microposts.css?body=1" for 111.197.233.57 at 2013-07-22 14:30:43 +0000
+
+
+Started GET "/assets/scaffolds.css?body=1" for 111.197.233.57 at 2013-07-22 14:30:43 +0000
+
+
+Started GET "/assets/users.css?body=1" for 111.197.233.57 at 2013-07-22 14:30:43 +0000
+
+
+Started GET "/assets/microposts.js?body=1" for 111.197.233.57 at 2013-07-22 14:30:43 +0000
+
+
+Started GET "/assets/users.js?body=1" for 111.197.233.57 at 2013-07-22 14:30:44 +0000
+
+
+Started GET "/assets/application.js?body=1" for 111.197.233.57 at 2013-07-22 14:30:44 +0000
+
+
+Started GET "/microposts/1/edit" for 112.90.78.22 at 2013-07-22 14:32:25 +0000
+Processing by MicropostsController#edit as */*
+  Parameters: {"id"=>"1"}
+  [1m[35mMicropost Load (0.2ms)[0m  SELECT "microposts".* FROM "microposts" WHERE "microposts"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered microposts/_form.html.erb (6.1ms)
+  Rendered microposts/edit.html.erb within layouts/application (11.6ms)
+Completed 200 OK in 23ms (Views: 21.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 112.90.78.22 at 2013-07-22 14:32:25 +0000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 112.90.78.22 at 2013-07-22 14:32:25 +0000
+
+
+Started GET "/assets/application.js?body=1" for 112.90.78.22 at 2013-07-22 14:32:25 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 112.90.78.22 at 2013-07-22 14:32:25 +0000
+
+
+Started GET "/assets/users.js?body=1" for 112.90.78.22 at 2013-07-22 14:32:25 +0000
+
+
+Started GET "/assets/microposts.js?body=1" for 112.90.78.22 at 2013-07-22 14:32:25 +0000
