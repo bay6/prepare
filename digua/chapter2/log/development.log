@@ -1,518 +1,186 @@
-  [1m[36m (8.1ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
-  [1m[35m (6.3ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+
+
+Started GET "/microposts/" for 111.197.233.57 at 2013-07-22 16:09:41 +0000
   [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
-Migrating to CreateUsers (20130722141844)
-  [1m[35m (0.1ms)[0m  begin transaction
-  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "email" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
-  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20130722141844"]]
-  [1m[36m (3.7ms)[0m  [1mcommit transaction[0m
-  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Processing by MicropostsController#index as HTML
+Completed 500 Internal Server Error in 5ms
+
+ArgumentError (Range unspecified. Specify the :in, :within, :maximum, :minimum, or :is option.):
+  app/models/micropost.rb:3:in `<class:Micropost>'
+  app/models/micropost.rb:1:in `<top (required)>'
+  app/controllers/microposts_controller.rb:7:in `index'
 
 
-Started GET "/" for 111.197.233.57 at 2013-07-22 14:20:48 +0000
-  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
-Processing by Rails::WelcomeController#index as HTML
-  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/railties-4.0.0/lib/rails/templates/rails/welcome/index.html.erb (34.5ms)
-Completed 200 OK in 41ms (Views: 40.1ms | ActiveRecord: 0.0ms)
+  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.8ms)
+  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (23.3ms)
+  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (37.9ms)
 
 
-Started GET "/rails/info/properties" for 111.197.233.57 at 2013-07-22 14:20:51 +0000
-Processing by Rails::InfoController#properties as */*
-  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
-  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/railties-4.0.0/lib/rails/templates/rails/info/properties.html.erb (0.6ms)
-Completed 200 OK in 15ms (Views: 8.8ms | ActiveRecord: 0.4ms)
+Started GET "/microposts/" for 111.197.233.57 at 2013-07-22 16:09:46 +0000
+Processing by MicropostsController#index as HTML
+Completed 500 Internal Server Error in 4ms
+
+ArgumentError (Range unspecified. Specify the :in, :within, :maximum, :minimum, or :is option.):
+  app/models/micropost.rb:3:in `<class:Micropost>'
+  app/models/micropost.rb:1:in `<top (required)>'
+  app/controllers/microposts_controller.rb:7:in `index'
 
 
-Started GET "/u" for 111.197.233.57 at 2013-07-22 14:21:07 +0000
-
-ActionController::RoutingError (No route matches [GET] "/u"):
-  actionpack (4.0.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
-  actionpack (4.0.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
-  railties (4.0.0) lib/rails/rack/logger.rb:38:in `call_app'
-  railties (4.0.0) lib/rails/rack/logger.rb:21:in `block in call'
-  activesupport (4.0.0) lib/active_support/tagged_logging.rb:67:in `block in tagged'
-  activesupport (4.0.0) lib/active_support/tagged_logging.rb:25:in `tagged'
-  activesupport (4.0.0) lib/active_support/tagged_logging.rb:67:in `tagged'
-  railties (4.0.0) lib/rails/rack/logger.rb:21:in `call'
-  actionpack (4.0.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
-  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
-  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
-  activesupport (4.0.0) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
-  rack (1.5.2) lib/rack/lock.rb:17:in `call'
-  actionpack (4.0.0) lib/action_dispatch/middleware/static.rb:64:in `call'
-  railties (4.0.0) lib/rails/engine.rb:511:in `call'
-  railties (4.0.0) lib/rails/application.rb:97:in `call'
-  rack (1.5.2) lib/rack/lock.rb:17:in `call'
-  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
-  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
-  /home/deployer/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
-  /home/deployer/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
-  /home/deployer/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
-
-
-  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.6ms)
-  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.9ms)
-  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (5.4ms)
-  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (32.4ms)
-
-
-Started GET "/us" for 111.197.233.57 at 2013-07-22 14:21:07 +0000
-
-ActionController::RoutingError (No route matches [GET] "/us"):
-  actionpack (4.0.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
-  actionpack (4.0.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
-  railties (4.0.0) lib/rails/rack/logger.rb:38:in `call_app'
-  railties (4.0.0) lib/rails/rack/logger.rb:21:in `block in call'
-  activesupport (4.0.0) lib/active_support/tagged_logging.rb:67:in `block in tagged'
-  activesupport (4.0.0) lib/active_support/tagged_logging.rb:25:in `tagged'
-  activesupport (4.0.0) lib/active_support/tagged_logging.rb:67:in `tagged'
-  railties (4.0.0) lib/rails/rack/logger.rb:21:in `call'
-  actionpack (4.0.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
-  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
-  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
-  activesupport (4.0.0) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
-  rack (1.5.2) lib/rack/lock.rb:17:in `call'
-  actionpack (4.0.0) lib/action_dispatch/middleware/static.rb:64:in `call'
-  railties (4.0.0) lib/rails/engine.rb:511:in `call'
-  railties (4.0.0) lib/rails/application.rb:97:in `call'
-  rack (1.5.2) lib/rack/lock.rb:17:in `call'
-  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
-  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
-  /home/deployer/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
-  /home/deployer/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
-  /home/deployer/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
-
-
+  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.9ms)
   Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.7ms)
-  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.8ms)
-  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.6ms)
-  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (24.9ms)
+  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.7ms)
+  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (19.2ms)
 
 
-Started GET "/user" for 111.197.233.57 at 2013-07-22 14:21:08 +0000
+Started GET "/microposts/" for 111.197.233.57 at 2013-07-22 16:09:47 +0000
+Processing by MicropostsController#index as HTML
+Completed 500 Internal Server Error in 3ms
 
-ActionController::RoutingError (No route matches [GET] "/user"):
-  actionpack (4.0.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
-  actionpack (4.0.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
-  railties (4.0.0) lib/rails/rack/logger.rb:38:in `call_app'
-  railties (4.0.0) lib/rails/rack/logger.rb:21:in `block in call'
-  activesupport (4.0.0) lib/active_support/tagged_logging.rb:67:in `block in tagged'
-  activesupport (4.0.0) lib/active_support/tagged_logging.rb:25:in `tagged'
-  activesupport (4.0.0) lib/active_support/tagged_logging.rb:67:in `tagged'
-  railties (4.0.0) lib/rails/rack/logger.rb:21:in `call'
-  actionpack (4.0.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
-  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
-  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
-  activesupport (4.0.0) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
-  rack (1.5.2) lib/rack/lock.rb:17:in `call'
-  actionpack (4.0.0) lib/action_dispatch/middleware/static.rb:64:in `call'
-  railties (4.0.0) lib/rails/engine.rb:511:in `call'
-  railties (4.0.0) lib/rails/application.rb:97:in `call'
-  rack (1.5.2) lib/rack/lock.rb:17:in `call'
-  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
-  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
-  /home/deployer/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
-  /home/deployer/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
-  /home/deployer/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+ArgumentError (Range unspecified. Specify the :in, :within, :maximum, :minimum, or :is option.):
+  app/models/micropost.rb:3:in `<class:Micropost>'
+  app/models/micropost.rb:1:in `<top (required)>'
+  app/controllers/microposts_controller.rb:7:in `index'
 
 
+  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.6ms)
+  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.0ms)
+  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (19.5ms)
+
+
+Started GET "/microposts/" for 111.197.233.57 at 2013-07-22 16:09:48 +0000
+Processing by MicropostsController#index as HTML
+Completed 500 Internal Server Error in 44ms
+
+ArgumentError (Range unspecified. Specify the :in, :within, :maximum, :minimum, or :is option.):
+  app/models/micropost.rb:3:in `<class:Micropost>'
+  app/models/micropost.rb:1:in `<top (required)>'
+  app/controllers/microposts_controller.rb:7:in `index'
+
+
+  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.9ms)
+  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.8ms)
+  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.8ms)
+  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (19.8ms)
+
+
+Started GET "/microposts/" for 111.197.233.57 at 2013-07-22 16:09:49 +0000
+Processing by MicropostsController#index as HTML
+Completed 500 Internal Server Error in 3ms
+
+ArgumentError (Range unspecified. Specify the :in, :within, :maximum, :minimum, or :is option.):
+  app/models/micropost.rb:3:in `<class:Micropost>'
+  app/models/micropost.rb:1:in `<top (required)>'
+  app/controllers/microposts_controller.rb:7:in `index'
+
+
+  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.9ms)
+  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.0ms)
+  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.7ms)
+  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (18.9ms)
+
+
+Started GET "/microposts/" for 111.197.233.57 at 2013-07-22 16:09:50 +0000
+Processing by MicropostsController#index as HTML
+Completed 500 Internal Server Error in 4ms
+
+ArgumentError (Range unspecified. Specify the :in, :within, :maximum, :minimum, or :is option.):
+  app/models/micropost.rb:3:in `<class:Micropost>'
+  app/models/micropost.rb:1:in `<top (required)>'
+  app/controllers/microposts_controller.rb:7:in `index'
+
+
+  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.8ms)
+  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.9ms)
+  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (19.1ms)
+
+
+Started GET "/microposts/" for 111.197.233.57 at 2013-07-22 16:11:01 +0000
+Processing by MicropostsController#index as HTML
+Completed 500 Internal Server Error in 3ms
+
+ArgumentError (Range unspecified. Specify the :in, :within, :maximum, :minimum, or :is option.):
+  app/models/micropost.rb:3:in `<class:Micropost>'
+  app/models/micropost.rb:1:in `<top (required)>'
+  app/controllers/microposts_controller.rb:7:in `index'
+
+
+  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.7ms)
+  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.4ms)
+  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (14.3ms)
+
+
+Started GET "/microposts/" for 111.197.233.57 at 2013-07-22 16:11:04 +0000
+Processing by MicropostsController#index as HTML
+Completed 500 Internal Server Error in 4ms
+
+ArgumentError (Range unspecified. Specify the :in, :within, :maximum, :minimum, or :is option.):
+  app/models/micropost.rb:3:in `<class:Micropost>'
+  app/models/micropost.rb:1:in `<top (required)>'
+  app/controllers/microposts_controller.rb:7:in `index'
+
+
+  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
   Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.9ms)
-  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.8ms)
-  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.6ms)
-  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (24.0ms)
+  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.9ms)
+  Rendered /home/deployer/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (20.3ms)
 
 
-Started GET "/users" for 111.197.233.57 at 2013-07-22 14:21:08 +0000
-Processing by UsersController#index as HTML
-  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users"[0m
-  Rendered users/index.html.erb within layouts/application (3.2ms)
-Completed 200 OK in 860ms (Views: 855.7ms | ActiveRecord: 0.6ms)
-
-
-Started GET "/assets/application.css?body=1" for 111.197.233.57 at 2013-07-22 14:21:09 +0000
-
-
-Started GET "/assets/scaffolds.css?body=1" for 111.197.233.57 at 2013-07-22 14:21:10 +0000
-
-
-Started GET "/assets/users.css?body=1" for 111.197.233.57 at 2013-07-22 14:21:10 +0000
-
-
-Started GET "/assets/jquery.js?body=1" for 111.197.233.57 at 2013-07-22 14:21:10 +0000
-
-
-Started GET "/assets/jquery_ujs.js?body=1" for 111.197.233.57 at 2013-07-22 14:21:10 +0000
-
-
-Started GET "/assets/turbolinks.js?body=1" for 111.197.233.57 at 2013-07-22 14:21:10 +0000
-
-
-Started GET "/assets/users.js?body=1" for 111.197.233.57 at 2013-07-22 14:21:10 +0000
-
-
-Started GET "/assets/application.js?body=1" for 111.197.233.57 at 2013-07-22 14:21:10 +0000
-
-
-Started GET "/users" for 111.197.233.57 at 2013-07-22 14:21:19 +0000
-Processing by UsersController#index as HTML
-  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users"
-  Rendered users/index.html.erb within layouts/application (1.7ms)
-Completed 200 OK in 9ms (Views: 7.5ms | ActiveRecord: 0.3ms)
-
-
-Started GET "/users/new" for 111.197.233.57 at 2013-07-22 14:22:11 +0000
-Processing by UsersController#new as HTML
-  Rendered users/_form.html.erb (33.1ms)
-  Rendered users/new.html.erb within layouts/application (35.5ms)
-Completed 200 OK in 43ms (Views: 42.0ms | ActiveRecord: 0.2ms)
-
-
-Started GET "/assets/scaffolds.css?body=1" for 111.197.233.57 at 2013-07-22 14:22:12 +0000
-
-
-Started GET "/assets/users.css?body=1" for 111.197.233.57 at 2013-07-22 14:22:12 +0000
-
-
-Started GET "/assets/users.js?body=1" for 111.197.233.57 at 2013-07-22 14:22:12 +0000
-
-
-Started POST "/users" for 111.197.233.57 at 2013-07-22 14:22:22 +0000
-Processing by UsersController#create as HTML
-  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Iacx82x5LyQDKdEZnE77XFcRvvp4pSzjdNuMJpuphNk=", "user"=>{"name"=>"ddd", "email"=>"abc123@abc.com"}, "commit"=>"Create User"}
-  [1m[36m (0.9ms)[0m  [1mbegin transaction[0m
-  [1m[35mSQL (4.1ms)[0m  INSERT INTO "users" ("created_at", "email", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", Mon, 22 Jul 2013 14:22:22 UTC +00:00], ["email", "abc123@abc.com"], ["name", "ddd"], ["updated_at", Mon, 22 Jul 2013 14:22:22 UTC +00:00]]
-  [1m[36m (6.7ms)[0m  [1mcommit transaction[0m
-Redirected to http://192.241.214.238:3000/users/1
-Completed 302 Found in 21ms (ActiveRecord: 11.7ms)
-
-
-Started GET "/users/1" for 111.197.233.57 at 2013-07-22 14:22:23 +0000
-Processing by UsersController#show as HTML
-  Parameters: {"id"=>"1"}
-  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "1"]]
-  Rendered users/show.html.erb within layouts/application (1.8ms)
-Completed 200 OK in 12ms (Views: 7.8ms | ActiveRecord: 0.4ms)
-
-
-Started GET "/assets/application.css?body=1" for 111.197.233.57 at 2013-07-22 14:22:23 +0000
-
-
-Started GET "/assets/scaffolds.css?body=1" for 111.197.233.57 at 2013-07-22 14:22:23 +0000
-
-
-Started GET "/assets/users.css?body=1" for 111.197.233.57 at 2013-07-22 14:22:23 +0000
-
-
-Started GET "/assets/users.js?body=1" for 111.197.233.57 at 2013-07-22 14:22:24 +0000
-
-
-Started GET "/assets/application.js?body=1" for 111.197.233.57 at 2013-07-22 14:22:24 +0000
-  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
-Migrating to CreateMicroposts (20130722142456)
-  [1m[35m (0.1ms)[0m  begin transaction
-  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "microposts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "content" varchar(255), "user_id" integer, "created_at" datetime, "updated_at" datetime) [0m
-  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20130722142456"]]
-  [1m[36m (7.7ms)[0m  [1mcommit transaction[0m
-  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
-
-
-Started GET "/microposts" for 111.197.233.57 at 2013-07-22 14:27:36 +0000
-  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/microposts/" for 111.197.233.57 at 2013-07-22 16:12:08 +0000
 Processing by MicropostsController#index as HTML
-  [1m[35mMicropost Load (0.1ms)[0m  SELECT "microposts".* FROM "microposts"
-  Rendered microposts/index.html.erb within layouts/application (2.6ms)
-Completed 200 OK in 242ms (Views: 238.7ms | ActiveRecord: 0.5ms)
+  [1m[35mMicropost Load (0.4ms)[0m  SELECT "microposts".* FROM "microposts"
+  Rendered microposts/index.html.erb within layouts/application (35.6ms)
+Completed 200 OK in 887ms (Views: 879.5ms | ActiveRecord: 1.3ms)
 
 
-Started GET "/microposts" for 111.197.233.57 at 2013-07-22 14:27:37 +0000
-Processing by MicropostsController#index as HTML
-  [1m[36mMicropost Load (0.3ms)[0m  [1mSELECT "microposts".* FROM "microposts"[0m
-  Rendered microposts/index.html.erb within layouts/application (1.7ms)
-Completed 200 OK in 10ms (Views: 9.3ms | ActiveRecord: 0.3ms)
+Started GET "/assets/application.css?body=1" for 111.197.233.57 at 2013-07-22 16:12:09 +0000
 
 
-Started GET "/assets/application.css?body=1" for 111.197.233.57 at 2013-07-22 14:27:38 +0000
+Started GET "/assets/microposts.css?body=1" for 111.197.233.57 at 2013-07-22 16:12:10 +0000
 
 
-Started GET "/assets/microposts.css?body=1" for 111.197.233.57 at 2013-07-22 14:27:38 +0000
+Started GET "/assets/scaffolds.css?body=1" for 111.197.233.57 at 2013-07-22 16:12:10 +0000
 
 
-Started GET "/assets/scaffolds.css?body=1" for 111.197.233.57 at 2013-07-22 14:27:38 +0000
+Started GET "/assets/users.css?body=1" for 111.197.233.57 at 2013-07-22 16:12:10 +0000
 
 
-Started GET "/assets/users.css?body=1" for 111.197.233.57 at 2013-07-22 14:27:38 +0000
+Started GET "/assets/jquery.js?body=1" for 111.197.233.57 at 2013-07-22 16:12:10 +0000
 
 
-Started GET "/assets/microposts.js?body=1" for 111.197.233.57 at 2013-07-22 14:27:38 +0000
+Started GET "/assets/jquery_ujs.js?body=1" for 111.197.233.57 at 2013-07-22 16:12:10 +0000
 
 
-Started GET "/assets/users.js?body=1" for 111.197.233.57 at 2013-07-22 14:27:38 +0000
+Started GET "/assets/turbolinks.js?body=1" for 111.197.233.57 at 2013-07-22 16:12:10 +0000
 
 
-Started GET "/assets/application.js?body=1" for 111.197.233.57 at 2013-07-22 14:27:38 +0000
+Started GET "/assets/microposts.js?body=1" for 111.197.233.57 at 2013-07-22 16:12:10 +0000
 
 
-Started GET "/microposts/new" for 111.197.233.57 at 2013-07-22 14:27:40 +0000
-Processing by MicropostsController#new as HTML
-  Rendered microposts/_form.html.erb (26.9ms)
-  Rendered microposts/new.html.erb within layouts/application (29.1ms)
-Completed 200 OK in 38ms (Views: 36.8ms | ActiveRecord: 0.2ms)
+Started GET "/assets/users.js?body=1" for 111.197.233.57 at 2013-07-22 16:12:10 +0000
 
 
-Started GET "/assets/application.css?body=1" for 111.197.233.57 at 2013-07-22 14:27:41 +0000
+Started GET "/assets/application.js?body=1" for 111.197.233.57 at 2013-07-22 16:12:10 +0000
 
 
-Started GET "/assets/scaffolds.css?body=1" for 111.197.233.57 at 2013-07-22 14:27:41 +0000
-
-
-Started GET "/assets/users.css?body=1" for 111.197.233.57 at 2013-07-22 14:27:41 +0000
-
-
-Started GET "/assets/users.js?body=1" for 111.197.233.57 at 2013-07-22 14:27:41 +0000
-
-
-Started GET "/assets/application.js?body=1" for 111.197.233.57 at 2013-07-22 14:27:41 +0000
-
-
-Started POST "/microposts" for 111.197.233.57 at 2013-07-22 14:28:10 +0000
-Processing by MicropostsController#create as HTML
-  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Iacx82x5LyQDKdEZnE77XFcRvvp4pSzjdNuMJpuphNk=", "micropost"=>{"content"=>"111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111", "user_id"=>"1"}, "commit"=>"Create Micropost"}
-  [1m[35m (0.2ms)[0m  begin transaction
-  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "microposts" ("content", "created_at", "updated_at", "user_id") VALUES (?, ?, ?, ?)[0m  [["content", "111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"], ["created_at", Mon, 22 Jul 2013 14:28:10 UTC +00:00], ["updated_at", Mon, 22 Jul 2013 14:28:10 UTC +00:00], ["user_id", 1]]
-  [1m[35m (6.3ms)[0m  commit transaction
-Redirected to http://192.241.214.238:3000/microposts/1
-Completed 302 Found in 15ms (ActiveRecord: 7.1ms)
-
-
-Started GET "/microposts/1" for 111.197.233.57 at 2013-07-22 14:28:11 +0000
-Processing by MicropostsController#show as HTML
-  Parameters: {"id"=>"1"}
-  [1m[36mMicropost Load (0.3ms)[0m  [1mSELECT "microposts".* FROM "microposts" WHERE "microposts"."id" = ? LIMIT 1[0m  [["id", "1"]]
-  Rendered microposts/show.html.erb within layouts/application (1.8ms)
-Completed 200 OK in 12ms (Views: 9.1ms | ActiveRecord: 0.3ms)
-
-
-Started GET "/assets/application.css?body=1" for 111.197.233.57 at 2013-07-22 14:28:11 +0000
-
-
-Started GET "/assets/microposts.css?body=1" for 111.197.233.57 at 2013-07-22 14:28:11 +0000
-
-
-Started GET "/assets/scaffolds.css?body=1" for 111.197.233.57 at 2013-07-22 14:28:12 +0000
-
-
-Started GET "/assets/users.css?body=1" for 111.197.233.57 at 2013-07-22 14:28:12 +0000
-
-
-Started GET "/assets/microposts.js?body=1" for 111.197.233.57 at 2013-07-22 14:28:12 +0000
-
-
-Started GET "/assets/users.js?body=1" for 111.197.233.57 at 2013-07-22 14:28:12 +0000
-
-
-Started GET "/assets/application.js?body=1" for 111.197.233.57 at 2013-07-22 14:28:12 +0000
-
-
-Started GET "/microposts" for 111.197.233.57 at 2013-07-22 14:28:39 +0000
-  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
-Processing by MicropostsController#index as HTML
-  [1m[35mMicropost Load (0.1ms)[0m  SELECT "microposts".* FROM "microposts"
-  Rendered microposts/index.html.erb within layouts/application (55.1ms)
-Completed 200 OK in 117ms (Views: 113.4ms | ActiveRecord: 0.5ms)
-
-
-Started GET "/microposts/1/edit" for 111.197.233.57 at 2013-07-22 14:28:39 +0000
+Started GET "/microposts/3/edit" for 111.197.233.57 at 2013-07-22 16:12:27 +0000
 Processing by MicropostsController#edit as HTML
-  Parameters: {"id"=>"1"}
-  [1m[36mMicropost Load (0.3ms)[0m  [1mSELECT "microposts".* FROM "microposts" WHERE "microposts"."id" = ? LIMIT 1[0m  [["id", "1"]]
-  Rendered microposts/_form.html.erb (49.1ms)
-  Rendered microposts/edit.html.erb within layouts/application (53.4ms)
-Completed 200 OK in 62ms (Views: 58.9ms | ActiveRecord: 0.3ms)
+  Parameters: {"id"=>"3"}
+  [1m[36mMicropost Load (0.5ms)[0m  [1mSELECT "microposts".* FROM "microposts" WHERE "microposts"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  Rendered microposts/_form.html.erb (67.9ms)
+  Rendered microposts/edit.html.erb within layouts/application (74.2ms)
+Completed 200 OK in 88ms (Views: 82.6ms | ActiveRecord: 0.5ms)
 
 
-Started GET "/assets/application.css?body=1" for 111.197.233.57 at 2013-07-22 14:28:40 +0000
-
-
-Started GET "/assets/microposts.css?body=1" for 111.197.233.57 at 2013-07-22 14:28:40 +0000
-
-
-Started GET "/assets/scaffolds.css?body=1" for 111.197.233.57 at 2013-07-22 14:28:40 +0000
-
-
-Started GET "/assets/users.css?body=1" for 111.197.233.57 at 2013-07-22 14:28:40 +0000
-
-
-Started GET "/assets/microposts.js?body=1" for 111.197.233.57 at 2013-07-22 14:28:40 +0000
-
-
-Started GET "/assets/users.js?body=1" for 111.197.233.57 at 2013-07-22 14:28:40 +0000
-
-
-Started GET "/assets/application.js?body=1" for 111.197.233.57 at 2013-07-22 14:28:40 +0000
-
-
-Started PATCH "/microposts/1" for 111.197.233.57 at 2013-07-22 14:28:53 +0000
+Started PATCH "/microposts/3" for 111.197.233.57 at 2013-07-22 16:12:37 +0000
 Processing by MicropostsController#update as HTML
-  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Iacx82x5LyQDKdEZnE77XFcRvvp4pSzjdNuMJpuphNk=", "micropost"=>{"content"=>"1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111", "user_id"=>"1"}, "commit"=>"Update Micropost", "id"=>"1"}
-  [1m[35mMicropost Load (0.2ms)[0m  SELECT "microposts".* FROM "microposts" WHERE "microposts"."id" = ? LIMIT 1  [["id", "1"]]
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Iacx82x5LyQDKdEZnE77XFcRvvp4pSzjdNuMJpuphNk=", "micropost"=>{"content"=>"ssdfssss大大大ssdfssss大大大ssdfssss大大大ssdfssss大大大ssdfssss大大大ssdfssss大大大大大dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss", "user_id"=>"1"}, "commit"=>"Update Micropost", "id"=>"3"}
+  [1m[35mMicropost Load (0.2ms)[0m  SELECT "microposts".* FROM "microposts" WHERE "microposts"."id" = ? LIMIT 1  [["id", "3"]]
   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
-  [1m[35mSQL (3.6ms)[0m  UPDATE "microposts" SET "content" = ?, "updated_at" = ? WHERE "microposts"."id" = 1  [["content", "1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"], ["updated_at", Mon, 22 Jul 2013 14:28:53 UTC +00:00]]
-  [1m[36m (5.0ms)[0m  [1mcommit transaction[0m
-Redirected to http://192.241.214.238:3000/microposts/1
-Completed 302 Found in 19ms (ActiveRecord: 9.0ms)
-
-
-Started GET "/microposts/1" for 111.197.233.57 at 2013-07-22 14:28:53 +0000
-Processing by MicropostsController#show as HTML
-  Parameters: {"id"=>"1"}
-  [1m[35mMicropost Load (0.2ms)[0m  SELECT "microposts".* FROM "microposts" WHERE "microposts"."id" = ? LIMIT 1  [["id", "1"]]
-  Rendered microposts/show.html.erb within layouts/application (2.1ms)
-Completed 200 OK in 12ms (Views: 10.0ms | ActiveRecord: 0.2ms)
-
-
-Started GET "/assets/application.css?body=1" for 111.197.233.57 at 2013-07-22 14:28:54 +0000
-
-
-Started GET "/assets/microposts.css?body=1" for 111.197.233.57 at 2013-07-22 14:28:54 +0000
-
-
-Started GET "/assets/scaffolds.css?body=1" for 111.197.233.57 at 2013-07-22 14:28:54 +0000
-
-
-Started GET "/assets/users.css?body=1" for 111.197.233.57 at 2013-07-22 14:28:54 +0000
-
-
-Started GET "/assets/microposts.js?body=1" for 111.197.233.57 at 2013-07-22 14:28:54 +0000
-
-
-Started GET "/assets/users.js?body=1" for 111.197.233.57 at 2013-07-22 14:28:54 +0000
-
-
-Started GET "/assets/application.js?body=1" for 111.197.233.57 at 2013-07-22 14:28:54 +0000
-
-
-Started GET "/microposts/1/edit" for 111.197.233.57 at 2013-07-22 14:29:28 +0000
-Processing by MicropostsController#edit as HTML
-  Parameters: {"id"=>"1"}
-  [1m[36mMicropost Load (0.3ms)[0m  [1mSELECT "microposts".* FROM "microposts" WHERE "microposts"."id" = ? LIMIT 1[0m  [["id", "1"]]
-  Rendered microposts/_form.html.erb (6.5ms)
-  Rendered microposts/edit.html.erb within layouts/application (8.5ms)
-Completed 200 OK in 21ms (Views: 18.0ms | ActiveRecord: 0.3ms)
-
-
-Started GET "/assets/application.css?body=1" for 111.197.233.57 at 2013-07-22 14:29:29 +0000
-
-
-Started GET "/assets/microposts.css?body=1" for 111.197.233.57 at 2013-07-22 14:29:29 +0000
-
-
-Started GET "/assets/scaffolds.css?body=1" for 111.197.233.57 at 2013-07-22 14:29:29 +0000
-
-
-Started GET "/assets/users.css?body=1" for 111.197.233.57 at 2013-07-22 14:29:29 +0000
-
-
-Started GET "/assets/microposts.js?body=1" for 111.197.233.57 at 2013-07-22 14:29:29 +0000
-
-
-Started GET "/assets/users.js?body=1" for 111.197.233.57 at 2013-07-22 14:29:29 +0000
-
-
-Started GET "/assets/application.js?body=1" for 111.197.233.57 at 2013-07-22 14:29:29 +0000
-
-
-Started PATCH "/microposts/1" for 111.197.233.57 at 2013-07-22 14:30:05 +0000
-Processing by MicropostsController#update as HTML
-  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Iacx82x5LyQDKdEZnE77XFcRvvp4pSzjdNuMJpuphNk=", "micropost"=>{"content"=>"abcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcde", "user_id"=>"1"}, "commit"=>"Update Micropost", "id"=>"1"}
-  [1m[35mMicropost Load (0.3ms)[0m  SELECT "microposts".* FROM "microposts" WHERE "microposts"."id" = ? LIMIT 1  [["id", "1"]]
-  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
-  [1m[35mSQL (0.4ms)[0m  UPDATE "microposts" SET "content" = ?, "updated_at" = ? WHERE "microposts"."id" = 1  [["content", "abcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcde"], ["updated_at", Mon, 22 Jul 2013 14:30:05 UTC +00:00]]
-  [1m[36m (6.5ms)[0m  [1mcommit transaction[0m
-Redirected to http://192.241.214.238:3000/microposts/1
-Completed 302 Found in 55ms (ActiveRecord: 7.4ms)
-
-
-Started GET "/microposts/1" for 111.197.233.57 at 2013-07-22 14:30:05 +0000
-Processing by MicropostsController#show as HTML
-  Parameters: {"id"=>"1"}
-  [1m[35mMicropost Load (0.3ms)[0m  SELECT "microposts".* FROM "microposts" WHERE "microposts"."id" = ? LIMIT 1  [["id", "1"]]
-  Rendered microposts/show.html.erb within layouts/application (1.0ms)
-Completed 200 OK in 11ms (Views: 9.2ms | ActiveRecord: 0.3ms)
-
-
-Started GET "/assets/application.css?body=1" for 111.197.233.57 at 2013-07-22 14:30:06 +0000
-
-
-Started GET "/assets/microposts.css?body=1" for 111.197.233.57 at 2013-07-22 14:30:06 +0000
-
-
-Started GET "/assets/scaffolds.css?body=1" for 111.197.233.57 at 2013-07-22 14:30:06 +0000
-
-
-Started GET "/assets/users.css?body=1" for 111.197.233.57 at 2013-07-22 14:30:06 +0000
-
-
-Started GET "/assets/microposts.js?body=1" for 111.197.233.57 at 2013-07-22 14:30:06 +0000
-
-
-Started GET "/assets/users.js?body=1" for 111.197.233.57 at 2013-07-22 14:30:06 +0000
-
-
-Started GET "/assets/application.js?body=1" for 111.197.233.57 at 2013-07-22 14:30:06 +0000
-
-
-Started GET "/microposts/1/edit" for 111.197.233.57 at 2013-07-22 14:30:43 +0000
-Processing by MicropostsController#edit as HTML
-  Parameters: {"id"=>"1"}
-  [1m[36mMicropost Load (0.2ms)[0m  [1mSELECT "microposts".* FROM "microposts" WHERE "microposts"."id" = ? LIMIT 1[0m  [["id", "1"]]
-  Rendered microposts/_form.html.erb (4.3ms)
-  Rendered microposts/edit.html.erb within layouts/application (5.6ms)
-Completed 200 OK in 14ms (Views: 12.1ms | ActiveRecord: 0.2ms)
-
-
-Started GET "/assets/application.css?body=1" for 111.197.233.57 at 2013-07-22 14:30:43 +0000
-
-
-Started GET "/assets/microposts.css?body=1" for 111.197.233.57 at 2013-07-22 14:30:43 +0000
-
-
-Started GET "/assets/scaffolds.css?body=1" for 111.197.233.57 at 2013-07-22 14:30:43 +0000
-
-
-Started GET "/assets/users.css?body=1" for 111.197.233.57 at 2013-07-22 14:30:43 +0000
-
-
-Started GET "/assets/microposts.js?body=1" for 111.197.233.57 at 2013-07-22 14:30:43 +0000
-
-
-Started GET "/assets/users.js?body=1" for 111.197.233.57 at 2013-07-22 14:30:44 +0000
-
-
-Started GET "/assets/application.js?body=1" for 111.197.233.57 at 2013-07-22 14:30:44 +0000
-
-
-Started GET "/microposts/1/edit" for 112.90.78.22 at 2013-07-22 14:32:25 +0000
-Processing by MicropostsController#edit as */*
-  Parameters: {"id"=>"1"}
-  [1m[35mMicropost Load (0.2ms)[0m  SELECT "microposts".* FROM "microposts" WHERE "microposts"."id" = ? LIMIT 1  [["id", "1"]]
-  Rendered microposts/_form.html.erb (6.1ms)
-  Rendered microposts/edit.html.erb within layouts/application (11.6ms)
-Completed 200 OK in 23ms (Views: 21.4ms | ActiveRecord: 0.2ms)
-
-
-Started GET "/assets/jquery.js?body=1" for 112.90.78.22 at 2013-07-22 14:32:25 +0000
-
-
-Started GET "/assets/turbolinks.js?body=1" for 112.90.78.22 at 2013-07-22 14:32:25 +0000
-
-
-Started GET "/assets/application.js?body=1" for 112.90.78.22 at 2013-07-22 14:32:25 +0000
-
-
-Started GET "/assets/jquery_ujs.js?body=1" for 112.90.78.22 at 2013-07-22 14:32:25 +0000
-
-
-Started GET "/assets/users.js?body=1" for 112.90.78.22 at 2013-07-22 14:32:25 +0000
-
-
-Started GET "/assets/microposts.js?body=1" for 112.90.78.22 at 2013-07-22 14:32:25 +0000
+  [1m[35m (0.1ms)[0m  rollback transaction
+  Rendered microposts/_form.html.erb (4.4ms)
+  Rendered microposts/edit.html.erb within layouts/application (5.5ms)
+Completed 200 OK in 18ms (Views: 11.7ms | ActiveRecord: 0.4ms)
