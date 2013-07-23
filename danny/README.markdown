@@ -1,3 +1,6 @@
 ### 新手任务
 
-适合已经过过一遍rails tutorial
+# chapter_1 done
+# chapter_2 done
+# chapter_3 done
+
