@@ -1,7 +1,6 @@
 ### 新手任务
 
-### 踩一脚
+# chapter_1 done
+# chapter_2 done
+# chapter_3 done
 
-我是隔壁的导师，过来看看，原来什么都没有啊，哇哈哈
-
-适合已经过过一遍rails tutorial
