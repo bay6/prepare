@@ -1,4 +1,5 @@
 MicroblogApp::Application.routes.draw do
+  # get "user/new"
   # get "static_pages/home"
   # get "static_pages/help"
   # get "static_pages/about"
@@ -7,6 +8,7 @@ MicroblogApp::Application.routes.draw do
   match '/help',    to: "static_pages#help",    via:'get'
   match '/about',   to: "static_pages#about",   via:'get'
   match '/contact', to: "static_pages#contact", via:'get'
+  match '/signup',  to: "user#new", via:'get'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
