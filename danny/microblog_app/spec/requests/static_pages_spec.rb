@@ -1,6 +1,19 @@
 require 'spec_helper'
 
 describe "StaticPages" do
+  it "have right links on the layout" do
+    visit root_path
+    click_link "About"
+    expect(page).to have_title("About Us")
+    click_link "Help"
+    expect(page).to have_title("Help")
+    click_link "Contact"
+    expect(page).to have_title("Contact")
+    click_link "Home"
+    click_link "Sign up now!"
+    expect(page).to have_title("Signup")
+  end
+  
   # subject { page }
   describe "Home page" do
     before { visit root_path }
