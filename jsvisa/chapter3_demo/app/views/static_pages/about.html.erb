@@ -1,15 +1,18 @@
+<% provide(:title, 'About') %>
 <!DOCTYPE html>
 <html>
 	<head>
-		 <title>Ruby on Rails Tutorial Sample App | About</title>
+		<title>Ruby on Rails Tutorial Sample App | <%= yield(:title) %></title>
 	</head>
 	<body>
 		<h1>About us</h1>
 		<p>
 			This is the about page for the project in
-			<a href="http://rubyunion.org/">Ruby Union prepare project\r\n</a>
+			<a href="http://rubyunion.org/">Ruby Union prepare project.</a>
+		</p>
+		<p>
 			We are devoted to create an open platform for users 
-			to learn, communicate, share ideas about
+			to learn, communicate, and share ideas about
 			<a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
 		</p>
 	</body>
