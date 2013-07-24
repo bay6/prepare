@@ -25,7 +25,6 @@ class MicropostsController < ApplicationController
   # POST /microposts.json
   def create
     @micropost = Micropost.new(micropost_params)
-
     respond_to do |format|
       if @micropost.save
         format.html { redirect_to @micropost, notice: 'Micropost was successfully created.' }
@@ -36,6 +35,7 @@ class MicropostsController < ApplicationController
       end
     end
   end
+
 
   # PATCH/PUT /microposts/1
   # PATCH/PUT /microposts/1.json
