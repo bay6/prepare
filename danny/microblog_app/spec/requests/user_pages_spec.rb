@@ -46,9 +46,12 @@ describe "UserPages" do
 		  	it "will got info page of new user" do
 		  		user = User.find_by(email: 'good@gmail.com')
 		  		expect(page).to have_title(user.name)
-		  		expect(page).to have_selector('div.alert.alert-success')
+		  		expect(page).to have_selector('div.alert.alert-success', text:'Weclome')
+		  		expect(page).to have_link('Signout')
 		  	end
 		  end
+
+
 
   	end
   	describe "with invalid information" do
@@ -71,6 +74,7 @@ describe "UserPages" do
 		  		expect(page).to have_title("Signup")
 		  		expect(page).to have_content('error')
 		  	end
+
 		  end
 
   	end
