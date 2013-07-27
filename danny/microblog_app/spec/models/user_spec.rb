@@ -8,6 +8,7 @@ describe User do
 									    password:"goodruby",
 									    password_confirmation: "goodruby")
 	end
+
 	subject { @user }
 
 
