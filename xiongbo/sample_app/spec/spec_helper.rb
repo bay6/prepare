@@ -40,5 +40,6 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 
-  # for capybara
+  # for capybara2.0
+  config.include Capybara::DSL
 end
