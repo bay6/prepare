@@ -8,6 +8,7 @@ describe User do
 									    password:"goodruby",
 									    password_confirmation: "goodruby")
 	end
+
 	subject { @user }
 
 
@@ -126,6 +127,12 @@ describe User do
 		it "with invalid password" do
 			expect(user_got_invalid_password).to be_false 
 		end
+	end
+
+	it {should respond_to (:remember_token)}
+	describe "remember token" do
+		before {@user.save}
+		its(:remember_token) { should_not be_blank }
 	end
 
 
