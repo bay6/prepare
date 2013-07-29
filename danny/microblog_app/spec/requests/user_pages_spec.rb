@@ -81,6 +81,48 @@ describe "UserPages" do
 
   end
 
+  describe "update page" do
+  	let(:user) {FactoryGirl.create(:user)}
+  	before { visit edit_user_path(user)}
+  	it "have content 'Update your profile' " do
+  		expect(page).to have_content("Update your profile")
+  	end 
+  	it "have title 'Edit user' " do
+  		expect(page).to have_title("Edit user")
+  	end 
+  	it "have link change' " do
+  		expect(page).to have_link('change', href:'http://gravatar.com/emails')
+  	end 
+
+  	describe "when with invalid information" do
+  		before { click_button "Save changes"}
+  		it "will got error" do
+	   		expect(page).to have_content("error")
+  		end
+  	end
+
+  	describe "when with valid information" do
+  		before do
+  			fill_in "Name", with: "newname"
+  			fill_in "Email", with: user.email
+  			fill_in "Password", with: user.password 
+  			fill_in "Confirmation", with: user.password 
+  			click_button "Save changes"
+  		end
+  		it "will got success" do
+  			#Profile page
+  			expect(page).to have_title("newname")
+	   		expect(user.reload.name).to eq("newname")
+	   		#success info
+	   		expect(page).to have_selector("div.alert.alert-success")
+	   		#signed in 
+	   		expect(page).to have_link('Signout',href: signout_path)
+  		end
+  	end
+  end
+
+
+
 
 
 end
