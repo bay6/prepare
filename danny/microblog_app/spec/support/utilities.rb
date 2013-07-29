@@ -1,6 +1,7 @@
 include ApplicationHelper
-def sign_in(user, options={})
-	if options[:no_capybara]
+
+def sign_in(user,options={})
+	if options[:nocap]
 		remember_token = User.new_remember_token
 		cookies[:remember_token] = remember_token
 		user.update_attributes(:remember_token,User.encrypt(remember_token))

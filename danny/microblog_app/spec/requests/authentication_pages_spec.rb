@@ -24,11 +24,6 @@ describe "AuthenticationPages" do
 
   	describe "with valid informaiton" do
   		let(:user) {FactoryGirl.create(:user)}
-  		# before do
-  		# 	fill_in "Email", with: user.email.upcase 
-  		# 	fill_in "Password", with: user.password
-  		#   click_button "Signin"
-  		# end
       before {sign_in(user)}
   		it {should have_title(user.name)}
   		it {should have_link("Profile", href:user_path(user))}
@@ -44,6 +39,67 @@ describe "AuthenticationPages" do
 
 
   	end
+  end
+
+  describe "authorization" do
+    # let(:user) {FactoryGirl.create(:user)}
+    describe "for non-signed-in user" do
+      let(:user){FactoryGirl.create(:user)}
+      describe "visiting the edit page" do
+        before { visit edit_user_path(user)}
+        it "redirect to signin page" do
+          expect(page).to have_title("Sign in")
+        end
+      end
+      describe "submitting the update action" do
+        before { patch user_path(user)}
+        it "redirect to signin page" do
+          expect(response).to redirect_to(signin_path)
+        end
+      end
+      describe "when attempting to visiting a protected page" do
+        before do
+          visit edit_user_path(user) 
+          fill_in "Email", with: user.email
+          fill_in "Password", with: user.password
+          click_button "Signin"
+        end
+        describe "after sign in " do
+          it "render the desired protected page" do
+            expect(page).to have_title('Edit user')
+          end
+        end
+
+      end
+    end
+
+    describe "for signed in user" do
+      let(:user){FactoryGirl.create(:user)}
+      let(:wrong_user){FactoryGirl.create(:user,
+                                          email:"wrong@example.com")}
+
+      describe "when visting other edit page" do
+        before do
+          sign_in(user, nocap: true)
+          visit edit_user_path(wrong_user)
+        end
+        it "can not visiting edit page" do
+          expect(page).not_to have_title("Edit user")
+        end
+      end
+      describe "submitting a PATCH request to other update action" do
+        before do
+          sign_in(user, nocap: true)
+          patch user_path(wrong_user)
+        end
+        it "will back to page" do
+          expect(response).to redirect_to root_path
+        end
+      end
+    end
+
+
+
   end
 
 

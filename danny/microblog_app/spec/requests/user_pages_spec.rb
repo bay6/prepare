@@ -83,7 +83,10 @@ describe "UserPages" do
 
   describe "update page" do
   	let(:user) {FactoryGirl.create(:user)}
-  	before { visit edit_user_path(user)}
+  	before do
+  		sign_in(user)	
+  	 	visit edit_user_path(user)
+  	end
   	it "have content 'Update your profile' " do
   		expect(page).to have_content("Update your profile")
   	end 
@@ -118,6 +121,7 @@ describe "UserPages" do
 	   		#signed in 
 	   		expect(page).to have_link('Signout',href: signout_path)
   		end
+
   	end
   end
 
