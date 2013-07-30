@@ -5,4 +5,5 @@
       = pluralize(@user.errors.count, "error")
     ul
       - @user.errors.full_messages.each do |msg|
-        li * = msg
+        li 
+          = msg
