@@ -46,6 +46,17 @@ describe "AuthenticationPages" do
     # let(:user) {FactoryGirl.create(:user)}
     describe "for non-signed-in user" do
       let(:user){FactoryGirl.create(:user)}
+
+      #no Profile Setting
+      describe "in head nav" do
+        before {visit root_path}
+        it "no Profile no Setting " do
+          expect(page).not_to have_link('Profile')
+          expect(page).not_to have_link('Setting')
+        end
+      end
+
+
       describe "visiting the edit page" do
         before { visit edit_user_path(user)}
         it "redirect to signin page" do
@@ -116,6 +127,16 @@ describe "AuthenticationPages" do
       before {sign_in user, no_capbara:true}
       describe "submitting Delete click" do 
         before {delete user_path(user)}
+        it "should redirect to home page" do          
+          expect(response).to redirect_to(root_path)
+        end
+      end
+    end
+    describe "as admin user" do
+      let(:admin){FactoryGirl.create(:admin)}
+      before {sign_in admin, no_capbara:true}
+      describe "Delete himself" do 
+        before {delete user_path(admin)}
         it "should redirect to home page" do          
           expect(response).to redirect_to(root_path)
         end

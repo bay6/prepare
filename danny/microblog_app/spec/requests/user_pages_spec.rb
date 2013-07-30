@@ -180,4 +180,53 @@ describe "UserPages" do
       end 
     end
   end
+
+  describe "edit" do
+    let(:user) {FactoryGirl.create(:user)}
+    before do
+      sign_in user,no_capbara:true
+    end
+    describe "forbidden attributes" do
+      let(:params) do
+        {user: {id: user.id, admin: true, password: user.password,
+                password_confirmation: user.password }}
+      end
+      before { patch user_path(user), params}
+      specify {expect(user.reload).not_to be_admin}
+    end
+  end
+
+  describe "new and create" do
+    describe "Users is aready signed in " do
+      let(:user){FactoryGirl.create(:user)}
+
+      describe "go new page" do
+        before do
+          sign_in user
+          visit new_user_path
+        end
+        it "can not get there" do
+          expect(page).not_to have_title('Signup')
+        end
+      end
+      describe "go create action" do
+        let(:params) do
+          { user: {name:user.name,
+                            email:user.email,
+                            password:user.password,
+                            password_confirmation:user.password}}
+        end
+
+        before do
+          sign_in user,no_capbara:true
+          post users_path,params
+        end
+        it "can not get there" do
+          expect(response).to redirect_to(root_path)
+        end
+      end
+    end
+  end
+
+
 end
