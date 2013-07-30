@@ -125,8 +125,59 @@ describe "UserPages" do
   	end
   end
 
+  describe "index page" do
+    let(:user) {FactoryGirl.create(:user)}
+    before do
+      sign_in user
+      FactoryGirl.create(:user,name:"goodme",email:"goodme@gmail.com")
+      FactoryGirl.create(:user,name:"goodyou",email:"goodyou@gmail.com")
+      visit users_path
+    end
+    it "have content 'All users'" do
+      expect(page).to have_content("All users")
+    end 
+    it "have title 'All users' " do
+      expect(page).to have_title("All users")
+    end 
+    it "list each user " do
+      User.all.each do |user|
+        expect(page).to have_selector('li',text:user.name)
+      end
+    end 
 
+    describe "pagination" do
+      before(:all){ 30.times {FactoryGirl.create(:user)}}
+      after(:all){ User.delete_all }
+      it "have selector pagination" do
+        expect(page).to have_selector("div.pagination")
+      end
+      User.paginate(page: 1).each do |user|
+        expect(page).to have_selector 'li', text: user.name
+      end
+    end
 
-
-
+    describe "delete links" do
+      it "have no delete link" do
+        expect(page).not_to have_link('delete')
+      end
+      describe "as an admin user" do 
+        let(:admin) {FactoryGirl.create(:admin)}
+        before do
+          sign_in admin
+          visit users_path
+        end
+        it "have delete link" do
+          expect(page).to have_link('delete', href: user_path(User.first))
+        end
+        it "should be able delete another user" do
+          expect do
+            click_link('delete', match: :first)
+          end.to change(User, :count).by(-1)
+        end
+        it "have no delete link by himself" do
+          expect(page).not_to have_link('delete', href: user_path(admin))
+        end
+      end 
+    end
+  end
 end

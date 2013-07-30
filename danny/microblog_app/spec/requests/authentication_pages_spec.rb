@@ -28,7 +28,8 @@ describe "AuthenticationPages" do
   		it {should have_title(user.name)}
   		it {should have_link("Profile", href:user_path(user))}
   		it {should have_link("Signout", href:signout_path)}
-  		it {should have_link("Setting",href:edit_user_path(user))}
+      it {should have_link("Setting",href:edit_user_path(user))}
+  		it {should have_link("Users",href:users_path)}
       it {should_not have_link("Signin",href:signin_path)}
 
 
@@ -57,6 +58,16 @@ describe "AuthenticationPages" do
           expect(response).to redirect_to(signin_path)
         end
       end
+
+      #index page
+      describe "visiting the index page" do
+        before {visit users_path}
+        it "redirect to signin page" do
+          expect(page).to have_title("Sign in")
+        end
+      end
+
+
       describe "when attempting to visiting a protected page" do
         before do
           visit edit_user_path(user) 
@@ -71,6 +82,7 @@ describe "AuthenticationPages" do
         end
 
       end
+
     end
 
     describe "for signed in user" do
@@ -80,7 +92,7 @@ describe "AuthenticationPages" do
 
       describe "when visting other edit page" do
         before do
-          sign_in(user, nocap: true)
+          sign_in(user, no_capbara: true)
           visit edit_user_path(wrong_user)
         end
         it "can not visiting edit page" do
@@ -89,11 +101,23 @@ describe "AuthenticationPages" do
       end
       describe "submitting a PATCH request to other update action" do
         before do
-          sign_in(user, nocap: true)
+          sign_in(user, no_capbara: true)
           patch user_path(wrong_user)
         end
         it "will back to page" do
           expect(response).to redirect_to root_path
+        end
+      end
+    end
+
+    describe "as non-admin user" do
+      let(:user){FactoryGirl.create(:user)}
+      let(:non_admin){FactoryGirl.create(:admin)}
+      before {sign_in user, no_capbara:true}
+      describe "submitting Delete click" do 
+        before {delete user_path(user)}
+        it "should redirect to home page" do          
+          expect(response).to redirect_to(root_path)
         end
       end
     end

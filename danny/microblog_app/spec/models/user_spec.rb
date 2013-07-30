@@ -10,6 +10,18 @@ describe User do
 	end
 
 	subject { @user }
+	##admin
+	it "respond to admin" do
+		expect(subject).to respond_to(:admin)
+	end
+	describe "admin attribute is 'true' " do
+		before do
+			@user.save
+			@user.toggle!(:admin)
+		end
+		it {should be_admin}
+		
+	end
 
 
 ###validations of name
