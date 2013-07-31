@@ -142,6 +142,24 @@ describe "AuthenticationPages" do
         end
       end
     end
+##microposts
+    describe "Opration of microposts" do
+      let(:user){FactoryGirl.create(:user)}
+      let(:micropost){FactoryGirl.create(:micropost)}
+      describe "when no signedin user submitting create action" do
+        before { post microposts_path }
+        it "redirect to sign in page" do
+          expect(response).to redirect_to(signin_path)
+        end
+      end
+      describe "when no signedin user submitting delete action" do
+        before { delete micropost_path(micropost)}
+        it "redirect to sign in page" do
+          expect(response).to redirect_to(signin_path)
+        end
+      end
+
+    end
 
 
 

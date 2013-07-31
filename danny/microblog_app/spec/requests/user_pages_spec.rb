@@ -228,5 +228,25 @@ describe "UserPages" do
     end
   end
 
-
+  describe "microposts " do
+    let(:user) {FactoryGirl.create(:user)}
+    let!(:m1){FactoryGirl.create(:micropost,user: user, content:"Good")}
+    let!(:m2){FactoryGirl.create(:micropost,user: user, content:"Bad")}
+    describe "in Profile page" do
+      before do
+        # sign_in user
+        visit user_path(user)
+      end
+      it "have content 'Good'" do
+        expect(page).to have_content(m1.content)
+      end
+      it "have content 'Bad'" do
+        expect(page).to have_content(m2.content)
+      end
+      it "have the count of content" do
+        expect(page).to have_content(user.microposts.count)
+      end
+    end
+  end
+ 
 end

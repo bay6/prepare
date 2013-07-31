@@ -12,6 +12,8 @@ describe User do
 	subject { @user }
 	#micropost
 	it {should respond_to(:microposts)}
+
+	it {should respond_to(:feed)}
 	##admin
 	it "respond to admin" do
 		expect(subject).to respond_to(:admin)
@@ -170,7 +172,22 @@ describe User do
   			expect(Micropost.where(id: micropost.id)).to be_empty
   		end
   	end
+
+  	describe "status" do
+  		let(:unfollowed_post) do
+  			FactoryGirl.create(:micropost, user: FactoryGirl.create(:user))
+  		end
+  		it "feed have micropost created by himself" do
+  			expect(@user.feed).to include(newer_micropost)
+  			expect(@user.feed).to include(older_micropost)
+  			expect(@user.feed).not_to include(unfollowed_post)
+  		end
+  	end
+
   end
+
+
+
 
 
 

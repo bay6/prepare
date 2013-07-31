@@ -32,6 +32,8 @@ describe Micropost do
   	expect(@micropost).to be_invalid
   end
 
+  
+
 
 
 end
