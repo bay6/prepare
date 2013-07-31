@@ -45,7 +45,6 @@ describe User do
     addresses = %w[user@foo,com user_at_foo.org example.user@foo. foo@bar_baz.com foo@bar..com foo@bar+baz.com]
     #addresses = %w[user@foo..com]
     addresses.each do |invalid_address|
-      puts invalid_address
       before { @user.email = invalid_address }
       it { should be_invalid }
     end
