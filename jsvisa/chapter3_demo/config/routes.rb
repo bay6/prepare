@@ -1,5 +1,5 @@
 Chapter3Demo::Application.routes.draw do
-  get "user/new"
+  resources :user
   #get "static_pages/home"
   #get "static_pages/help"
   #get "static_pages/about"
