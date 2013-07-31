@@ -246,7 +246,17 @@ describe "UserPages" do
       it "have the count of content" do
         expect(page).to have_content(user.microposts.count)
       end
+      describe "created by other user" do
+        let(:other_user){FactoryGirl.create(:user)}
+        before do
+          FactoryGirl.create(:micropost, user:other_user)
+          sign_in user
+          visit user_path(other_user)
+        end
+        it "have no 'delete link'" do
+          expect(page).not_to have_link('delete')
+        end
+      end
     end
   end
- 
 end
