@@ -7,6 +7,9 @@
 				<%= @user.name %>
 			</h1> 
 		</section>
+		<section>
+			<%= render 'shared/stats' %>
+		</section>
 	</aside>
 	<div class="span8">
 		<% if @user.microposts.any? %>

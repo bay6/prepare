@@ -1,5 +1,9 @@
 class User < ActiveRecord::Base
-	has_many :microposts, dependent: :destroy
+	has_many :relationships,         foreign_key: "fan_id",dependent: :destroy
+	has_many :reverse_relationships, foreign_key: "followed_id",class_name: "Relationship", dependent: :destroy
+	has_many :followed_users,through: :relationships,source: :followed
+  has_many :fans,through: :reverse_relationships
+	has_many :microposts,dependent: :destroy
 	validates :name, presence: true, length: {maximum: 50}
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+[a-z\d.]*\.[a-z]+\z/i
 	validates :email, format: { with: VALID_EMAIL_REGEX },
@@ -20,6 +24,19 @@ class User < ActiveRecord::Base
 
 	def feed
 		Micropost.where("user_id = ?", id)
+	end
+
+	def follow!(other_user)
+		self.relationships.create!(followed_id: other_user.id)
+	end
+
+	def unfollow(other_user)
+		self.relationships.find_by(followed_id: other_user.id).destroy
+		
+	end
+
+	def following?(other_user)
+		self.relationships.find_by(followed_id: other_user.id)
 	end
 
 	private
