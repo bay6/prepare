@@ -42,19 +42,17 @@ describe User do
   end
 
   describe "Invalid email address" do
-    #it "should be invalid" do
+    it "should be invalid" do
       addresses = %w[user@foo,com user_at_foo.org example.user@foo. foo@bar_baz.com foo@bar..com foo@bar+baz.com]
       #addresses = %w[user@foo..com]
       addresses.each do |invalid_address|
         #before { @user.email = invalid_address }
-        before do
-          puts invalid_address
+        #before do
+        #  puts invalid_address
         @user.email = invalid_address
         #puts "user.email = #{@user.email}"
-        #expect(@user).to be_invalid
+        expect(@user).to be_invalid
       end
-        it do
-        end
     end
   end
 
