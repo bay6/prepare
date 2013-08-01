@@ -30,6 +30,9 @@ gem 'jbuilder', '~> 1.2'
 gem 'slim'
 gem 'bootstrap-sass'
 gem 'bcrypt-ruby', '~>3.0.0'
+gem 'faker'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
