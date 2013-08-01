@@ -12,7 +12,7 @@ header.navbar.navbar-fixed-top
               a href="#" class="dropdown-toggle" data-toggle="dropdown" Account: b.caret
               ul.dropdown-menu
                 li = link_to "Profile", current_user
-                li = link_to "Settings", '#'
+                li = link_to "Settings", edit_user_path(current_user)
                 li.divider
                 li = link_to "Sign out", signout_path, method: "delete"
           - else
