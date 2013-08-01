@@ -91,5 +91,17 @@ describe "AuthenticationPages" do
         specify { response.should redirect_to(root_path) }
       end 
     end
+
+    describe "as non-admin user" do
+      let(:user) { FactoryGirl.create(:user) }
+      let(:non_admin) { FactoryGirl.create(:user) }
+
+      before { sign_in non_admin }
+
+      describe "submitting a DELETE request to the Users#destroy action" do
+        before { delete user_path(user) }
+        specify { response.should redirect_to(root_path) }
+      end
+    end
   end
 end
