@@ -81,6 +81,152 @@ describe "UserPages" do
 
   end
 
+  describe "update page" do
+  	let(:user) {FactoryGirl.create(:user)}
+  	before do
+  		sign_in(user)	
+  	 	visit edit_user_path(user)
+  	end
+  	it "have content 'Update your profile' " do
+  		expect(page).to have_content("Update your profile")
+  	end 
+  	it "have title 'Edit user' " do
+  		expect(page).to have_title("Edit user")
+  	end 
+  	it "have link change' " do
+  		expect(page).to have_link('change', href:'http://gravatar.com/emails')
+  	end 
+
+  	describe "when with invalid information" do
+  		before { click_button "Save changes"}
+  		it "will got error" do
+	   		expect(page).to have_content("error")
+  		end
+  	end
+
+  	describe "when with valid information" do
+  		before do
+  			fill_in "Name", with: "newname"
+  			fill_in "Email", with: user.email
+  			fill_in "Password", with: user.password 
+  			fill_in "Confirmation", with: user.password 
+  			click_button "Save changes"
+  		end
+  		it "will got success" do
+  			#Profile page
+  			expect(page).to have_title("newname")
+	   		expect(user.reload.name).to eq("newname")
+	   		#success info
+	   		expect(page).to have_selector("div.alert.alert-success")
+	   		#signed in 
+	   		expect(page).to have_link('Signout',href: signout_path)
+  		end
+
+  	end
+  end
+
+  describe "index page" do
+    let(:user) {FactoryGirl.create(:user)}
+    before do
+      sign_in user
+      FactoryGirl.create(:user,name:"goodme",email:"goodme@gmail.com")
+      FactoryGirl.create(:user,name:"goodyou",email:"goodyou@gmail.com")
+      visit users_path
+    end
+    it "have content 'All users'" do
+      expect(page).to have_content("All users")
+    end 
+    it "have title 'All users' " do
+      expect(page).to have_title("All users")
+    end 
+    it "list each user " do
+      User.all.each do |user|
+        expect(page).to have_selector('li',text:user.name)
+      end
+    end 
+
+    describe "pagination" do
+      before(:all){ 30.times {FactoryGirl.create(:user)}}
+      after(:all){ User.delete_all }
+      it "have selector pagination" do
+        expect(page).to have_selector("div.pagination")
+      end
+      User.paginate(page: 1).each do |user|
+        expect(page).to have_selector 'li', text: user.name
+      end
+    end
+
+    describe "delete links" do
+      it "have no delete link" do
+        expect(page).not_to have_link('delete')
+      end
+      describe "as an admin user" do 
+        let(:admin) {FactoryGirl.create(:admin)}
+        before do
+          sign_in admin
+          visit users_path
+        end
+        it "have delete link" do
+          expect(page).to have_link('delete', href: user_path(User.first))
+        end
+        it "should be able delete another user" do
+          expect do
+            click_link('delete', match: :first)
+          end.to change(User, :count).by(-1)
+        end
+        it "have no delete link by himself" do
+          expect(page).not_to have_link('delete', href: user_path(admin))
+        end
+      end 
+    end
+  end
+
+  describe "edit" do
+    let(:user) {FactoryGirl.create(:user)}
+    before do
+      sign_in user,no_capbara:true
+    end
+    describe "forbidden attributes" do
+      let(:params) do
+        {user: {id: user.id, admin: true, password: user.password,
+                password_confirmation: user.password }}
+      end
+      before { patch user_path(user), params}
+      specify {expect(user.reload).not_to be_admin}
+    end
+  end
+
+  describe "new and create" do
+    describe "Users is aready signed in " do
+      let(:user){FactoryGirl.create(:user)}
+
+      describe "go new page" do
+        before do
+          sign_in user
+          visit new_user_path
+        end
+        it "can not get there" do
+          expect(page).not_to have_title('Signup')
+        end
+      end
+      describe "go create action" do
+        let(:params) do
+          { user: {name:user.name,
+                            email:user.email,
+                            password:user.password,
+                            password_confirmation:user.password}}
+        end
+
+        before do
+          sign_in user,no_capbara:true
+          post users_path,params
+        end
+        it "can not get there" do
+          expect(response).to redirect_to(root_path)
+        end
+      end
+    end
+  end
 
 
 end
