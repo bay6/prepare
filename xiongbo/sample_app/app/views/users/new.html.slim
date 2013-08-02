@@ -13,5 +13,9 @@ h1 Sign up
       = f.password_field :password
       = f.label :password_confirmation, "Confirmation"
       = f.password_field :password_confirmation
+      = f.radio_button :gender, true
+      = f.label :gender_true, "man"
+      = f.radio_button :gender, false
+      = f.label :gender_false, "woman"
 
       = f.submit "Create my account", class: "btn btn-large btn-primary"
