@@ -84,6 +84,8 @@ describe "UserPages" do
         fill_in "Confirmation", with: "foobar"
       end
 
+      it { should have_checked_field("man") }
+
       it "should create a user" do
         expect { click_button submit }.to change(User, :count)
       end
@@ -120,12 +122,14 @@ describe "UserPages" do
     describe "with valid information" do
       let(:new_name) { "New Name" }
       let(:new_email) { "new@example.com" }
+      let(:woman) { false }
 
       before do
         fill_in "Name", with: new_name
         fill_in "Email", with: new_email
         fill_in "Password", with: user.password
         fill_in "Confirm Password", with: user.password
+        choose "woman"
         click_button "Save changes" 
       end
 
@@ -135,6 +139,7 @@ describe "UserPages" do
 
       specify { user.reload.name.should == new_name }
       specify { user.reload.email.should == new_email }
+      specify { user.reload.gender.should == woman }
     end
 
   end
