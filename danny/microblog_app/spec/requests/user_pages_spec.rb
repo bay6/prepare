@@ -228,5 +228,174 @@ describe "UserPages" do
     end
   end
 
+  describe "microposts " do
+    let(:user) {FactoryGirl.create(:user)}
+    let!(:m1){FactoryGirl.create(:micropost,user: user, content:"Good")}
+    let!(:m2){FactoryGirl.create(:micropost,user: user, content:"Bad")}
+    describe "in Profile page" do
+      before do
+        # sign_in user
+        visit user_path(user)
+      end
+      it "have content 'Good'" do
+        expect(page).to have_content(m1.content)
+      end
+      it "have content 'Bad'" do
+        expect(page).to have_content(m2.content)
+      end
+      it "have the count of content" do
+        expect(page).to have_content(user.microposts.count)
+      end
+      describe "created by other user" do
+        let(:other_user){FactoryGirl.create(:user)}
+        before do
+          FactoryGirl.create(:micropost, user:other_user)
+          sign_in user
+          visit user_path(other_user)
+        end
+        it "have no 'delete link'" do
+          expect(page).not_to have_link('delete')
+        end
+      end
+    end
+  end
 
+  describe "following/follower" do
+    subject { page }
+    let(:user){FactoryGirl.create(:user)}
+    let(:other_user){FactoryGirl.create(:user)}
+    before { user.follow!(other_user) }
+    describe "followed users" do
+      before do
+        sign_in user
+        visit following_user_path(user)
+      end
+      it { should have_title(full_title('Following'))}
+      it { should have_selector('h3',text:'Following')}
+      it { should have_link(other_user.name, href: user_path(other_user))}
+    end
+    describe "fans" do
+      before do
+        sign_in other_user
+        visit fans_user_path(other_user)
+      end
+      it { should have_title(full_title('Fans'))}
+      it { should have_selector('h3',text:'Fans')}
+      it { should have_link(user.name, href: user_path(user))}
+    end
+  end
+
+
+  describe "profile page" do
+    subject { page }
+    let(:user) { FactoryGirl.create(:user) }
+    describe "follow/unfollow buttons" do
+      let(:other_user) { FactoryGirl.create(:user)}
+      before { sign_in user }
+      describe "following a user" do
+        before { visit user_path(other_user) }
+        it "should increment the followed user count" do
+          expect do
+            click_button "Follow"
+          end.to change(user.followed_users, :count).by(1)
+        end
+        it "should increment the other user's fans count" do
+          expect do
+            click_button "Follow"
+          end.to change(other_user.fans, :count).by(1)
+        end
+        describe "toggling the button" do
+          before { click_button "Follow" }
+          it { should have_xpath("//input[@value='Unfollow']")}
+        end
+      end 
+      describe "unfollow a user" do
+        before do
+          user.follow!(other_user)
+          visit user_path(other_user) 
+        end
+        it "should decrement the followed user count" do
+          expect do
+            click_button "Unfollow"
+          end.to change(user.followed_users, :count).by(-1)
+        end
+        it "should decrement the other user's fans count" do
+          expect do
+            click_button "Unfollow"
+          end.to change(other_user.fans, :count).by(-1)
+        end
+        describe "toggling the button" do
+          before { click_button "Unfollow" }
+          it { should have_xpath("//input[@value='Follow']")}
+        end
+      end 
+    end
+  end
+  ##same as controller 
+  describe "create and destroy" do
+
+    let(:user) { FactoryGirl.create(:user) }
+    let(:other_user) { FactoryGirl.create(:user) }
+
+    before { sign_in user, no_capbara: true }
+
+    describe "creating a relationship with Ajax" do
+
+      it "should increment the Relationship count" do
+        expect do
+          # xhr :post, :create, relationship: { followed_id: other_user.id }
+          xhr :post, relationships_path, relationship: { followed_id: other_user.id }
+        end.to change(Relationship, :count).by(1)
+      end
+
+      it "should respond with success" do
+        # xhr :post, :create, relationship: { followed_id: other_user.id }
+        xhr :post, relationships_path, relationship: { followed_id: other_user.id }
+        expect(response).to be_success
+      end
+    end
+
+    describe "destroying a relationship with Ajax" do
+
+      before { user.follow!(other_user) }
+      let(:relationship) { user.relationships.find_by(followed_id: other_user) }
+
+      it "should decrement the Relationship count" do
+        expect do
+          # xhr :delete, :destroy, id: relationship.id
+          xhr :delete, relationship_path(relationship.id), id: relationship.id
+        end.to change(Relationship, :count).by(-1)
+      end
+
+      it "should respond with success" do
+        # xhr :delete, :destroy, id: relationship.id
+        xhr :delete, relationship_path(relationship.id), id: relationship.id
+        expect(response).to be_success
+      end
+    end
+  end
+
+  #profile page fans and following counts
+  describe "profile page" do
+    describe "for signed in users" do
+      let(:user){ FactoryGirl.create(:user) }
+      before do
+        FactoryGirl.create(:micropost, user:user, content:"good")
+        FactoryGirl.create(:micropost, user:user, content:"bad")
+        sign_in user
+        visit user_path(user)
+      end
+
+      describe "fans/following counts" do
+        subject { page }
+        let(:other_user){FactoryGirl.create(:user)}
+        before do
+          other_user.follow!(user)
+          visit user_path(user)
+        end
+        it {should have_link("0 following", href: following_user_path(user))}
+        it {should have_link("1 fans", href: fans_user_path(user))}
+      end
+    end
+  end
 end
