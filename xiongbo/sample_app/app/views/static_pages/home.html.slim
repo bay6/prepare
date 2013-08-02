@@ -1,12 +1,20 @@
-.center.hero-unit
-  h1 Welcome to the Sample App
-  h2 
-    | This is the home page for the
-    a href="xiongbo.me" Ruby on Rails Tutorail
-    | sample application.
+- if signed_in?
+  .row
+    aside.span4
+      section
+        = render 'shared/user_info'
+      section
+        = render 'shared/micropost_form'
+- else
+  .center.hero-unit
+    h1 Welcome to the Sample App
+    h2 
+      | This is the home page for the
+      a href="xiongbo.me" Ruby on Rails Tutorail
+      | sample application.
 
-  = link_to "sign up now!", signup_path, class: "btn btn-large btn-primary"
+    = link_to "sign up now!", signup_path, class: "btn btn-large btn-primary"
 
-= link_to image_tag("rails.png", alt: "Rails"), 'http://xiongbo.me'
+  = link_to image_tag("rails.png", alt: "Rails"), 'http://xiongbo.me'
 
 
