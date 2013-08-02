@@ -5,6 +5,10 @@
         = render 'shared/user_info'
       section
         = render 'shared/micropost_form'
+    .span8
+      h3 
+        | Micropost Feed
+        = render 'shared/feed'
 - else
   .center.hero-unit
     h1 Welcome to the Sample App
@@ -16,5 +20,6 @@
     = link_to "sign up now!", signup_path, class: "btn btn-large btn-primary"
 
   = link_to image_tag("rails.png", alt: "Rails"), 'http://xiongbo.me'
+
 
 
