@@ -70,6 +70,7 @@ describe "StaticPages" do
       end
 
       describe "follower/following counts" do
+        subject { page }
         let(:other_user){FactoryGirl.create(:user)}
         before do
           other_user.follow!(user)
