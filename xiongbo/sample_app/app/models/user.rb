@@ -10,7 +10,7 @@
 #
 
 class User < ActiveRecord::Base
-  has_many :microposts
+  has_many :microposts, dependent: :destroy
   has_secure_password
 
   before_save { |user| user.email = email.downcase }

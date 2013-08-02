@@ -137,6 +137,20 @@ describe User do
 
     it "should have the right microposts in the right order" do
       @user.microposts.should == [new_micropost, older_micropost]
+      @user.microposts.count.should == 2
+    end
+
+    it "should destroy associated microposts" do
+      microposts_copied = []
+      @user.microposts.each do |mp|
+        microposts_copied << mp
+      end
+      @user.destroy
+      microposts_copied.should_not be_empty
+      microposts_copied.count.should == 2
+      microposts_copied.each do |mp|
+        Micropost.find_by(mp.id).should be_nil
+      end
     end
   end
 end
