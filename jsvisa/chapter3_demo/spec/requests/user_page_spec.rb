@@ -16,6 +16,13 @@ describe "UserPage" do
       it "should not create an empty account" do
         expect { click_button(submit) }.not_to change(User, :count)
       end
+
+      describe "after commition" do
+        before { click_button create }
+
+        it { should have_title("Sign up") }
+        it { should have_content("error") }
+      end
     end
 
     describe "with valid information" do
@@ -28,6 +35,14 @@ describe "UserPage" do
       
       it "should create an accout" do
         expect { click_button(submit) }.to change(User, :count).by(1) 
+      end
+
+      describe "after saving the user" do
+        before { click_button create }
+        let(:user) { User.find_by(email: "example@gmail.com") }
+
+        it { should have_title(user.name) }
+        it { should have_selector('div.alert.alert-success', text: 'Welcome') }
       end
     end
   end
