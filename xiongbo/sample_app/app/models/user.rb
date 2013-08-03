@@ -2,11 +2,15 @@
 #
 # Table name: users
 #
-#  id         :integer          not null, primary key
-#  name       :string(255)
-#  email      :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  id              :integer          not null, primary key
+#  name            :string(255)
+#  email           :string(255)
+#  created_at      :datetime
+#  updated_at      :datetime
+#  password_digest :string(255)
+#  remember_token  :string(255)
+#  admin           :boolean          default(FALSE)
+#  gender          :boolean          default(TRUE)
 #
 
 class User < ActiveRecord::Base
@@ -31,7 +35,7 @@ class User < ActiveRecord::Base
 
 
   def feed
-    Micropost.where("user_id = ?", id)
+    Micropost.from_user_followed_by(self)
   end
 
   def following?(other_user)
