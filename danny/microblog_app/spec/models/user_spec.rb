@@ -10,6 +10,10 @@ describe User do
 	end
 
 	subject { @user }
+	#micropost
+	it {should respond_to(:microposts)}
+
+	it {should respond_to(:feed)}
 	##admin
 	it "respond to admin" do
 		expect(subject).to respond_to(:admin)
@@ -148,4 +152,88 @@ describe User do
 	end
 
 
+  describe "micropost associations" do
+  	before { @user.save }
+  	let!(:older_micropost) do
+  		FactoryGirl.create(:micropost, user:@user,created_at: 1.day.ago)
+  	end
+  	let!(:newer_micropost) do
+  		FactoryGirl.create(:micropost, user:@user,created_at: 1.hour.ago)
+  	end
+  	it "have the right order" do
+  		expect(@user.microposts.to_a).to eq [newer_micropost, older_micropost]
+  	end
+
+  	it "destroy associated microposts" do
+  		microposts = @user.microposts.to_a
+  		@user.destroy
+  		expect(microposts).not_to be_empty
+  		microposts.each do |micropost|
+  			expect(Micropost.where(id: micropost.id)).to be_empty
+  		end
+  	end
+
+
+  	describe "status" do
+  		let(:unfollowed_post) do
+  			FactoryGirl.create(:micropost, user: FactoryGirl.create(:user))
+  		end
+  		let(:followed_user) { FactoryGirl.create(:user) }
+  		before do
+  			@user.follow!(followed_user)
+  			3.times { followed_user.microposts.create!(content: "Lorem ipsum")}
+  		end
+  		it "feed have micropost created by himself" do
+  			expect(@user.feed).to include(newer_micropost)
+  			expect(@user.feed).to include(older_micropost)
+  			expect(@user.feed).not_to include(unfollowed_post)
+  			followed_user.microposts.each do |micropost|
+  				expect(@user.feed).to include(micropost)
+  			end
+  		end
+  	end
+
+  end
+
+  ##relationship
+  it {should respond_to(:relationships)}
+  it {should respond_to(:followed_users)}
+  it {should respond_to(:reverse_relationships)}
+  it {should respond_to(:fans)}
+  ##method
+  it {should respond_to(:follow!)}
+  it {should respond_to(:unfollow!)}
+  it {should respond_to(:following?)}
+
+  describe "following" do
+  	let(:other_user){FactoryGirl.create(:user)}
+  	before do
+  		@user.save
+  		@user.follow!(other_user)
+  	end
+  	it {should be_following(other_user)}
+  	its(:followed_users) {should include(other_user)}
+  	describe "unfollow" do
+  		before { @user.unfollow!(other_user) }
+  		it {should_not be_following(other_user)}
+  		its(:followed_users) {should_not include(other_user)}
+  	end
+  end
+
+  describe "relationships associations" do
+		let!(:user){FactoryGirl.create(:user)}
+		let!(:followed){FactoryGirl.create(:user)}
+		let!(:relationship){user.relationships.create!(followed_id: followed.id)}
+
+
+  	it "destroy associated relationships" do
+  		relationships = user.relationships.to_a
+  		user.destroy!
+  		expect(relationships).not_to be_empty
+  		relationships.each do |relationship|
+	  		expect(Relationship.where(id: relationship.id)).to be_empty
+  		end
+
+  	end
+  end
 end
