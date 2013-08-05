@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+
   # Valiables 
   Min_name_length = 2
   Min_password_length = 6
@@ -8,6 +9,7 @@ class User < ActiveRecord::Base
 
   #before_save { self.email = email.downcase }
   before_save { email.downcase! }
+  before_create :create_remember_token
 
   # valiable settings
   validates :name, presence: true, 
@@ -18,6 +20,20 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: Min_password_length }
 
   has_secure_password
+
+  def User.new_remember_token
+    SecureRandom.urlsafe_base64
+  end
+
+  def User.encrypt(token)
+    Digest::SHA1.hexdigest(token.to_s)
+  end
+
+  private
+
+    def create_remember_token
+      self.remember_token = User.encrypt(User.new_remember_token)
+    end
 
 end
 
