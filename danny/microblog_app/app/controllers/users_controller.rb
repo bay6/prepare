@@ -1,8 +1,15 @@
 class UsersController < ApplicationController
-  before_action :signed_in_user, only: [:edit,:update,:index, :following, :fans]
+  before_action :signed_in_user, only: [:edit,
+                                        :update,
+                                        :index, 
+                                        :following, 
+                                        :fans,
+                                        :follow_all,
+                                        :unfollow_all]
   before_action :corrent_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
   before_action :no_new_create, only: [:new, :create]
+
 
   def following
     @title = "Following"
@@ -17,6 +24,29 @@ class UsersController < ApplicationController
     @users = @user.fans.paginate(page: params[:page])
     render 'show_follow'
   end
+
+  def follow_all
+    fans = User.find(params[:user][:id]).fans
+    current_user.follow_all! fans
+    flash[:success] = "Follow all is done"
+    respond_to do |format|
+      format.html { redirect_to current_user }
+      format.js 
+    end
+    
+  end
+
+  def unfollow_all
+    fans = User.find(params[:user][:id]).fans
+    current_user.unfollow_all! fans
+    flash[:success] = "unFollow all is done"
+    respond_to do |format|
+      format.html { redirect_to current_user }
+      format.js 
+    end
+  end
+
+
 
   def new
   	@user= User.new

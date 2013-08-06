@@ -264,7 +264,15 @@ aside {
 		margin-bottom: 5px;
 	}
 }
-
-
-
+/*follow all*/
+#follow_all {
+	ul {
+		float: right;
+		list-style: none;
+		li {
+			float: left;
+			margin-left: 10px;
+		}
+	}
+}
 
