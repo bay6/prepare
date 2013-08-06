@@ -1,3 +1,3 @@
-#Ruby on Rails Tutorial: Microblog application
+#Ruby on Rails Tutorial
 
-##chapter 3
+http://safe-plateau-5354.herokuapp.com

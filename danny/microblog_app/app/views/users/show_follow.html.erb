@@ -23,7 +23,7 @@
 			<h3><%= @title %></h3>
 		</div>
 		<% if @users.any? %>
-			<%= render 'show_follow_all' %>
+			<%= render 'show_follow_all' if @title =="Fans" || !current_user? @user %>
 			<ul class="users">
 					<%= render @users %>
 			</ul>
