@@ -48,7 +48,9 @@ class User < ActiveRecord::Base
 
   def follow_all!(other_user)
     other_user.followed_users.each do |followed_user|
-      follow!(followed_user)
+      unless following?(followed_user)
+        follow!(followed_user)
+      end
     end
   end
 
