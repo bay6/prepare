@@ -46,6 +46,12 @@ class User < ActiveRecord::Base
     relationships.create!(followed_id: other_user.id)
   end
 
+  def follow_all!(other_user)
+    other_user.followed_users.each do |followed_user|
+      follow!(followed_user)
+    end
+  end
+
   def unfollow!(other_user)
     relationships.find_by(followed_id: other_user.id).destroy
   end
