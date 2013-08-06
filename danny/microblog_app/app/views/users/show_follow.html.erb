@@ -19,8 +19,11 @@
 		</section>
 	</aside>
 	<div class="span8">
-		<h3><%= @title %></h3>
+		<div>
+			<h3><%= @title %></h3>
+		</div>
 		<% if @users.any? %>
+			<%= render 'show_follow_all' %>
 			<ul class="users">
 					<%= render @users %>
 			</ul>

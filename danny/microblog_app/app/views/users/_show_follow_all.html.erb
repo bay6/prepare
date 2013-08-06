@@ -1,0 +1,12 @@
+<ul id="follow_all">
+	<%= form_for @user, url: follow_all_user_path, method: :post do |f| %>
+		<div><%= f.hidden_field :id %></div>
+	<%= f.submit "Follow All", class: "btn btn-large btn-primary" %>
+	<% end %>
+
+	<%= form_for @user, url: unfollow_all_user_path, method: :post do |f| %>
+		<div><%= f.hidden_field :id %></div>
+	<%= f.submit "Unfollow All", class: "btn btn-large" %>
+	<% end %>
+</ul>
+

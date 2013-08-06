@@ -14,6 +14,8 @@ MicroblogApp::Application.routes.draw do
     member do
       get :following
       get :fans
+      post :follow_all
+      post :unfollow_all
     end
   end
   resources :sessions, only: [:new,:create,:destroy]
@@ -21,6 +23,7 @@ MicroblogApp::Application.routes.draw do
   match '/signout', to: "sessions#destroy", via:'delete' 
   resources :microposts, only: [:create,:destroy]
   resources :relationships, only: [:create,:destroy]
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
