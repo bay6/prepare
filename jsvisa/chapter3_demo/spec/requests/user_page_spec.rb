@@ -26,12 +26,7 @@ describe "UserPage" do
     end
 
     describe "with valid information" do
-      before do
-        fill_in "Name", with: "Example"
-        fill_in "Email", with: "example@gmail.com"
-        fill_in "Password", with: "123456"
-        fill_in "Confirmation", with: "123456"
-      end
+      before { fill_in_valid_signup }
       
       it "should create an accout" do
         expect { click_button(submit) }.to change(User, :count).by(1) 
