@@ -66,6 +66,7 @@ class UsersController < ApplicationController
       flash[:success] = "success followed people"
       redirect_to current_user
     else
+      flash[:error] = "The error has occured while follow people"
       render 'show_follow'
     end
   end
