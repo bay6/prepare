@@ -10,7 +10,9 @@ class RelationshipsController < ApplicationController
 		# 	format.html { redirect_to @user }
 		# 	format.js
 		# end
-		respond_with @user
+		respond_with @user do |format|
+			format.html { redirect_to @user }
+		end
 	end
 
 	def destroy
@@ -20,6 +22,13 @@ class RelationshipsController < ApplicationController
 		# 	format.html { redirect_to @user }
 		# 	format.js
 		# end
-		respond_with @user
+		respond_with @user do |format|
+			format.html { redirect_to @user }
+		end
 	end
+
+
+	private
+
+
 end
