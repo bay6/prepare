@@ -1,3 +1,3 @@
-= form_for @user, url: follow_all_user_path(@user) do |f|
+= form_for @user, url: follow_all_user_path(@user), method: :post do |f|
   div = f.hidden_field :id
   = f.submit "Follow all", class: "btn btn-large btn-primary"

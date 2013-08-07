@@ -7,7 +7,7 @@ SampleApp::Application.routes.draw do
   resources :users do
     member do
       get :following, :followers
-      patch :follow_all
+      post :follow_all
     end
   end
 

@@ -69,6 +69,11 @@ describe "AuthenticationPages" do
           before { visit followers_user_path(user) }
           it { should have_title('Sign in') }
         end
+
+        describe "submitting to the follow_all! action" do
+          before { post follow_all_user_path(user) }
+          specify { response.should redirect_to(signin_path) } 
+        end
       end 
 
       describe "when attempting to visit a protexted page" do
