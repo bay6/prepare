@@ -42,6 +42,7 @@ describe User do
   it { should respond_to(:followers) }
   it { should respond_to(:following?) }
   it { should respond_to(:follow!) }
+  it { should respond_to(:follow_all!) }
   it { should be_valid }
   it { should_not be_admin }
 
@@ -207,4 +208,20 @@ describe User do
       its(:followers) { should include(@user) }
     end
   end 
+
+  describe "follow user's followings" do
+    let(:other_user) { FactoryGirl.create(:user) }
+    before do
+      10.times do |n|
+        user_temp = FactoryGirl.create(:user)
+        other_user.follow!(user_temp)
+      end
+      @user.save
+    end 
+
+    it "should had followed all users that other_user had followed" do
+      other_user.followed_users.count.should == 10
+      expect { @user.follow_all!(other_user) }.to change(@user.followed_users, :count).by(10)   
+    end 
+  end
 end

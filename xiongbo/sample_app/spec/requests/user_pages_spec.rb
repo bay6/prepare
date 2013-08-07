@@ -232,5 +232,39 @@ describe "UserPages" do
       it { should have_selector('h3', text: 'Followers') }
       it { should have_link(user.name, href: user_path(user)) } 
     end
+
+    describe "follow all" do
+      before do
+        sign_in user
+      end
+
+      context "when visit user's show page" do
+        before { visit user_path(user) } 
+        it { should_not have_button('Follow all') }
+      end
+
+      context "when visit other_user's show page" do
+        it "should not have button while don't have any followed user" do
+          visit user_path(other_user) 
+          should_not have_button('Follow all') 
+        end
+
+        describe "while other_user has followed a user" do 
+          before do
+            other_user.follow!(user)
+            visit following_user_path(other_user) 
+          end
+
+          it { should have_button('Follow all') } 
+
+          describe "click Follow all" do
+            before { click_button "Follow all" }
+            it { should have_title(user.name) }
+            it { should have_selector('div.alert.alert-success', text: 'success followed people') }
+            it { should have_link('Sign out') }
+          end
+        end
+      end 
+    end
   end 
 end
