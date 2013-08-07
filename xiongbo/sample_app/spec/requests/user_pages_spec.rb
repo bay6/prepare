@@ -238,14 +238,21 @@ describe "UserPages" do
         sign_in user
       end
 
-      context "when visit user's show page" do
-        before { visit user_path(user) } 
+      context "when visit user's following page" do
+        before { visit following_user_path(user) } 
         it { should_not have_button('Follow all') }
       end
 
-      context "when visit other_user's show page" do
+      context "when visit other_user's followers page" do
+        it "should not have Follow all button" do
+          visit followers_user_path(other_user) 
+          should_not have_button('Follow all') 
+        end 
+      end
+
+      context "when visit other_user's following page" do
         it "should not have button while don't have any followed user" do
-          visit user_path(other_user) 
+          visit following_user_path(other_user) 
           should_not have_button('Follow all') 
         end
 
