@@ -18,7 +18,10 @@
 
   .span8
     h3 = @title
+    title
     - if @users.any?
+      - unless @user == current_user
+        = render partial: 'follow_all', user: @user
       ul.users
         = render @users
       = will_paginate

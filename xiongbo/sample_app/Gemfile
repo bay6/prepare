@@ -39,7 +39,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-group :development, :text do
+group :development, :test do
   gem 'rspec-rails'
   gem 'annotate'
 end

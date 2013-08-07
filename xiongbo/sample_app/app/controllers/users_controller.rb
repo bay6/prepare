@@ -60,6 +60,17 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
 
+  def follow_all
+    @user = User.find(params[:id])
+    if current_user.follow_all!(@user)
+      flash[:success] = "success followed people"
+      redirect_to current_user
+    else
+      flash[:error] = "The error has occured while follow people"
+      render 'show_follow'
+    end
+  end
+
   private
 
 
