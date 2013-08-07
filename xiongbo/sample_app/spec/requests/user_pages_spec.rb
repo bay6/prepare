@@ -70,6 +70,56 @@ describe "UserPages" do
       it { should have_content(m2.content) }
       it { should have_content(user.microposts.count) }
     end
+
+    describe "follow/unfollow buttons" do
+      let(:other_user) { FactoryGirl.create(:user) }
+      before { sign_in user}
+
+      describe "following a user" do
+        before { visit user_path(other_user) }
+
+        it "should incremen the followed user count" do
+          expect do
+            click_button "Follow"
+          end.to change(user.followed_users, :count).by(1)
+        end
+
+        it "should increment the other user's followers count" do
+          expect do
+            click_button "Follow"
+          end.to change(other_user.followers, :count).by(1)
+        end
+
+        describe "toggling the button" do
+          before { click_button "Follow" }
+          it { should have_button('Unfollow')}
+        end
+      end
+
+      describe "unfollowing a user" do
+        before do
+          user.follow!(other_user)
+          visit user_path(other_user)
+        end
+
+        it "should decrement the followed user count" do
+          expect do
+            click_button "Unfollow"
+          end.to change(user.followed_users, :count).by(-1)
+        end
+
+        it "should decrement the other user's followers count" do
+          expect do
+            click_button "Unfollow"
+          end.to change(other_user.followers, :count).by(-1)
+        end
+
+        describe "toggling the button" do
+          before { click_button "Unfollow" }
+          it { should have_button('Follow')}
+        end
+      end
+    end
   end
 
   describe "signup" do
@@ -156,4 +206,72 @@ describe "UserPages" do
     end 
   end
 
+  describe "following/followers" do
+    let(:user) { FactoryGirl.create(:user) } 
+    let(:other_user) { FactoryGirl.create(:user) } 
+    before { user.follow!(other_user) }
+
+    describe "followed users" do
+      before do
+        sign_in user
+        visit following_user_path(user)
+      end
+
+      it { should have_title(full_title('Following')) }
+      it { should have_selector('h3', text: 'Following') }
+      it { should have_link(other_user.name, href: user_path(other_user)) }
+    end
+
+    describe "followers" do
+      before do
+        sign_in other_user
+        visit followers_user_path(other_user)
+      end
+
+      it { should have_title(full_title('Followers')) }
+      it { should have_selector('h3', text: 'Followers') }
+      it { should have_link(user.name, href: user_path(user)) } 
+    end
+
+    describe "follow all" do
+      before do
+        sign_in user
+      end
+
+      context "when visit user's following page" do
+        before { visit following_user_path(user) } 
+        it { should_not have_button('Follow all') }
+      end
+
+      context "when visit other_user's followers page" do
+        it "should not have Follow all button" do
+          visit followers_user_path(other_user) 
+          should_not have_button('Follow all') 
+        end 
+      end
+
+      context "when visit other_user's following page" do
+        it "should not have button while don't have any followed user" do
+          visit following_user_path(other_user) 
+          should_not have_button('Follow all') 
+        end
+
+        describe "while other_user has followed a user" do 
+          before do
+            other_user.follow!(user)
+            visit following_user_path(other_user) 
+          end
+
+          it { should have_button('Follow all') } 
+
+          describe "click Follow all" do
+            before { click_button "Follow all" }
+            it { should have_title(user.name) }
+            it { should have_selector('div.alert.alert-success', text: 'success followed people') }
+            it { should have_link('Sign out') }
+          end
+        end
+      end 
+    end
+  end 
 end

@@ -5,7 +5,7 @@ describe "UserPage" do
 
   subject { page }
 
-  describe "Sign up " do
+  describe "Sign up" do
     before { visit signup_path }
     let(:submit) { "Create my account" }
 
@@ -18,9 +18,9 @@ describe "UserPage" do
       end
 
       describe "after commition" do
-        before { click_button create }
+        before { click_button submit}
 
-        it { should have_title("Sign up") }
+        it { should_not have_title("Sign up") }
         it { should have_content("error") }
       end
     end
@@ -38,12 +38,13 @@ describe "UserPage" do
       end
 
       describe "after saving the user" do
-        before { click_button create }
+        before { click_button submit}
         let(:user) { User.find_by(email: "example@gmail.com") }
 
         it { should have_title(user.name) }
         it { should have_selector('div.alert.alert-success', text: 'Welcome') }
       end
+
     end
   end
 
