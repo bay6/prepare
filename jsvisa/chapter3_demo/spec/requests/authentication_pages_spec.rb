@@ -48,7 +48,7 @@ describe "AuthenticationPages" do
       describe "in the Users controller" do
 
         describe "visiting the edit page" do
-          before { visit edit_user_path }
+          before { visit edit_user_path(user) }
 
           it { should have_title("Sign in") }
         end
