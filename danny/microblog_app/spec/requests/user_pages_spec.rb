@@ -374,6 +374,44 @@ describe "UserPages" do
       end
     end
   end
+  ##follow all
+  describe "follow all" do
+    subject { page }
+    let!(:current_user) { FactoryGirl.create(:user) }
+    let(:viewed_user) { FactoryGirl.create(:user) }
+    let(:other_user1) { FactoryGirl.create(:user) }
+    let(:other_user2) { FactoryGirl.create(:user) }
+
+    before do
+      other_user1.follow! viewed_user
+      other_user2.follow! viewed_user
+    end
+    describe "follow all viewed user's fans" do
+      before do
+        sign_in current_user
+        visit fans_user_path(viewed_user) 
+      end
+      it "should Increment the current user's following count" do
+        expect do
+          click_button "Follow All"
+        end.to change(current_user.followed_users, :count).by(2)
+      end
+    end
+
+    describe "unfollow all viewed user's fans" do
+      before do
+        current_user.follow! other_user1
+        current_user.follow! other_user2
+        sign_in current_user
+        visit fans_user_path(viewed_user) 
+      end
+      it "should Decrement the current user's following count" do
+        expect do
+          click_button "Unfollow All"
+        end.to change(current_user.followed_users, :count).by(-2)
+      end
+    end
+  end
 
   #profile page fans and following counts
   describe "profile page" do

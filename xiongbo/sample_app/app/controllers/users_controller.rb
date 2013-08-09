@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :signed_in_user, only: [:index, :edit, :update, :destroy, :following, :followers]
+  before_filter :signed_in_user, only: [:index, :edit, :update, :destroy, :following, :followers, :follow_all]
   before_filter :correct_user, only: [:edit, :update]
   before_filter :admin_user, only: :destroy
 
@@ -58,6 +58,17 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow'
+  end
+
+  def follow_all
+    @user = User.find(params[:id])
+    if current_user.follow_all!(@user)
+      flash[:success] = "success followed people"
+      redirect_to current_user
+    else
+      flash[:error] = "The error has occured while follow people"
+      render 'show_follow'
+    end
   end
 
   private

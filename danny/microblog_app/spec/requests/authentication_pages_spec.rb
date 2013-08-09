@@ -116,6 +116,13 @@ describe "AuthenticationPages" do
           specify { expect(response).to redirect_to(signin_path)}
         end
       end
+
+      #follow all
+      describe "submitting to follow all" do
+        # let(:params) {{ user: { id:current_user.id} }}
+        before { post follow_all_user_path(user) }
+        specify {expect(response).to redirect_to(signin_path)}
+      end
     end
 
     describe "for signed in user" do

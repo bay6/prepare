@@ -204,6 +204,11 @@ describe User do
   it {should respond_to(:follow!)}
   it {should respond_to(:unfollow!)}
   it {should respond_to(:following?)}
+  ###
+  it {should respond_to(:follow_all!)}
+  it {should respond_to(:unfollow_all!)}
+
+
 
   describe "following" do
   	let(:other_user){FactoryGirl.create(:user)}
@@ -219,6 +224,35 @@ describe User do
   		its(:followed_users) {should_not include(other_user)}
   	end
   end
+
+  describe "follow all" do
+  	let!(:other_user1){FactoryGirl.create(:user)}
+  	let!(:other_user2){FactoryGirl.create(:user)}
+  	let(:users){ [other_user1,other_user2] }
+  	before do
+  		@user.save
+  		@user.follow_all! users
+  	end
+		  it {should be_following(other_user1)}
+		  it {should be_following(other_user2)}
+		  its(:followed_users) {should include(other_user1)}
+		  its(:followed_users) {should include(other_user2)}
+  end 
+
+  describe "unfollow all" do
+  	let!(:other_user1){FactoryGirl.create(:user)}
+  	let!(:other_user2){FactoryGirl.create(:user)}
+  	let(:users){ [other_user1,other_user2] }
+  	before do
+  		@user.save
+  		@user.follow_all! users
+  		@user.unfollow_all! users
+  	end
+		  it {should_not be_following(other_user1)}
+		  it {should_not be_following(other_user2)}
+		  its(:followed_users) {should_not include(other_user1)}
+		  its(:followed_users) {should_not include(other_user2)}
+  end 
 
   describe "relationships associations" do
 		let!(:user){FactoryGirl.create(:user)}
