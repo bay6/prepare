@@ -19,8 +19,18 @@ describe User do
   it { should respond_to(:remember_token) }
   it { should respond_to(:authenticate) }
   it { should respond_to(:save) }
+  it { should respond_to(:admin) }
 
   it { should be_valid }
+
+  describe "with admin attribute set to 'true'" do
+    before do
+      @user.save!
+      @user.toggle!(:admin)
+    end
+
+    it { should be_admin }
+  end
 
   describe "When name is empty" do
     before { @user.name = "" }
