@@ -17,13 +17,23 @@ describe "Static pages" do
     it_should_behave_like "all static pages"
     it { should_not have_title('| Home') }
 
-	  #it "should have the right content and title 'Sample App'" do
-		#  visit root_path
-	  #    expect(page).to have_content('Sample App')
-	  #    expect(page).to have_title("#{base_title}")
-		#    expect(page).not_to have_title("Home")
-	  #end
-	end
+    describe "for signed-in users" do
+      let(:user) { FactoryGirl.create(:user) }
+      before do
+        FactoryGirl.create(:micropost, user: user, content: "Haha") 
+        FactoryGirl.create(:micropost, user: user, content: "Have a lunch") 
+        visit signin_path
+        valid_signin user
+        visit root_path
+      end
+
+      it "should render user's feed" do
+        user.feed.each do |item|
+          expect(page).to have_selector("li##{item.id}", text: item.content)
+        end
+      end
+    end
+	 end
 
 	describe "Help page" do
     before { visit help_path }
