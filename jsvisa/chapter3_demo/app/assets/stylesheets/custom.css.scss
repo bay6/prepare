@@ -193,3 +193,39 @@ input {
   }
 }
 
+/* microposts */
+
+.microposts {
+  list-style: none;
+  margin: 10px 0 0 0;
+
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+}
+.content {
+  display: block;
+}
+.timestamp {
+  color: $LightGray;
+}
+.gravatar {
+  float: left;
+  margin-right: 10px;
+}
+aside {
+  textarea {
+    height: 100px;
+    margin-bottom: 5px;
+  }
+}
+
+/* micropost jQuery countdown */
+
+.countdown {
+  display: inline;
+  padding-left: 40px;
+  color: $LightGray;
+} 
+
