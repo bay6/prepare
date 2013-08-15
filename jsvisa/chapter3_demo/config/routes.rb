@@ -1,11 +1,18 @@
 Chapter3Demo::Application.routes.draw do
-  resources :users
+
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+
   resources :sessions, only: [:new, :create, :destroy]
   resources :microposts, only: [:create, :destroy]
-  #get "static_pages/home"
+  resources :relationships, only: [:create, :destroy]
   #get "static_pages/help"
   #get "static_pages/about"
   #get "static_pages/contact"
+  #get "static_pages/home"
   #match '/home', to: 'static_pages#home', via: 'get'
   root to: 'static_pages#home'
   match '/help', to: 'static_pages#help', via: 'get'
