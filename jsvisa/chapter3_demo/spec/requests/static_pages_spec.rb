@@ -33,7 +33,7 @@ describe "Static pages" do
         end
       end
 
-      descibe "followers and following counts" do
+      describe "followers and following counts" do
         let(:other_user) { FactoryGirl.create(:user) }
         before do
           other_user.follow!(user)

@@ -63,17 +63,7 @@ describe "AuthenticationPages" do
           it { should have_title("Sign in") }
         end
 
-        describe "when attempting to visit a protected page" do
-          before do
-            visit edit_user_path(user)
-            valid_signin(user)
-          end
-          
-          describe "after signing in" do
-            it { should have_title("Edit user") }
-          end
-
-          describe "visiting the following page" do
+        describe "visiting the following page" do
             before { visit following_user_path(user) }
 
             it { should have_title("Sign in") }
@@ -83,6 +73,16 @@ describe "AuthenticationPages" do
             before { visit followers_user_path(user) }
 
             it { should have_title("Sign in") }
+          end
+
+        describe "when attempting to visit a protected page" do
+          before do
+            visit edit_user_path(user)
+            valid_signin(user)
+          end
+          
+          describe "after signing in" do
+            it { should have_title("Edit user") }
           end
 
           describe "when signing in again" do
