@@ -155,6 +155,17 @@ describe "UsersPage" do
         end
       end
     end
+
+    describe "followers and following counts" do
+      let(:other_user) { FactoryGirl.create(:user) }
+      before do
+        user.follow!(other_user)
+        visit user_path(user)
+      end
+
+      it { should have_link("1 following", href: following_user_path(user)) }
+      it { should have_link("0 followers", href: followers_user_path(user)) }
+    end
   end
 
   describe 'edit' do
