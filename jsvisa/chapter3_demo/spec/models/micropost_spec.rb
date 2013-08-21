@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Micropost" do
+describe Micropost do
   let(:user) { FactoryGirl.create(:user) }
   before do
     @micropost = user.microposts.build(content: "Haha", user_id: user.id)
