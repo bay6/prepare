@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     if @user.save 
       sign_in @user
       flash[:success] = "Welcome"
-      UserMailer.registration_confirmation(@user).deliver
+      #UserMailer.registration_confirmation(@user).deliver
       redirect_to @user
     else
       render 'new'
